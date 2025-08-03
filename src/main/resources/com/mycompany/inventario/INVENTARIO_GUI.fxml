@@ -45,8 +45,8 @@
                               <TableView fx:id="tblTerminal" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="155.0" prefWidth="868.0" style="-fx-border-color: #A3C7E4; -fx-border-width: 1;" BorderPane.alignment="CENTER">
                                  <columns>
                                     <TableColumn fx:id="colcodIdMedicamento" prefWidth="102.4000153541565" text="Id_Medicamento" />
-                                    <TableColumn fx:id="colcodCUM" prefWidth="41.5999755859375" text="CUM" />
                                     <TableColumn fx:id="colProveedor" prefWidth="78.4000015258789" text="Proveedor" />
+                                    <TableColumn fx:id="colcodCUM" prefWidth="41.5999755859375" text="CUM" />
                                     <TableColumn fx:id="colNombreGenerico" prefWidth="112.00009155273438" text="Nombre_Genérico" />
                                     <TableColumn fx:id="colNombreComercial" prefWidth="123.199951171875" text="Nombre_Comercial" />
                                     <TableColumn fx:id="colCantidad" prefWidth="59.20001220703125" text="Cantidad" />
@@ -60,15 +60,16 @@
                               </TableView>
                            </top>
                            <center>
-                              <TableView prefHeight="170.0" prefWidth="870.0" BorderPane.alignment="CENTER">
+                              <TableView fx:id="tblInsumos" prefHeight="170.0" prefWidth="870.0" BorderPane.alignment="CENTER">
                                 <columns>
-                                  <TableColumn prefWidth="75.0" text="Id_Insumo" />
-                                  <TableColumn prefWidth="75.0" text="CUDIM" />
-                                    <TableColumn prefWidth="112.00003051757812" text="Nombre_Genérico" />
-                                    <TableColumn prefWidth="119.20001220703125" text="Nombre_Comercial" />
-                                    <TableColumn prefWidth="108.0" text="Cantidad" />
-                                    <TableColumn prefWidth="157.5999755859375" text="Especificación Técnica" />
-                                    <TableColumn prefWidth="107.199951171875" text="Especialidad" />
+                                  <TableColumn fx:id="colIdInsumo" prefWidth="75.0" text="Id_Insumo" />
+                                  <TableColumn fx:id="colIdProveedorInsumo" prefWidth="75.0" text="Proveedor" />
+                                  <TableColumn fx:id="colCUDIM" prefWidth="75.0" text="CUDIM" />
+                                    <TableColumn fx:id="colNombreGenericoInsumo" prefWidth="112.00003051757812" text="Nombre_Genérico" />
+                                    <TableColumn fx:id="colNombreComercialInsumo" prefWidth="119.20001220703125" text="Nombre_Comercial" />
+                                    <TableColumn fx:id="colCantidadInsumo" prefWidth="108.0" text="Cantidad" />
+                                    <TableColumn fx:id="colEspecificacionTecnica" prefWidth="157.5999755859375" text="Especificación Técnica" />
+                                    <TableColumn fx:id="colEspecialidad" prefWidth="107.199951171875" text="Especialidad" />
                                 </columns>
                               </TableView>
                            </center>
@@ -97,7 +98,7 @@
                   </AnchorPane>
             </content>
           </Tab>
-            <Tab fx:id="tabConductores" text="PEDIDOS">
+            <Tab fx:id="tabPedidos" text="PEDIDOS">
                <content>
                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
@@ -112,16 +113,17 @@
                                     <Label layoutX="175.0" layoutY="50.0" prefHeight="23.0" prefWidth="79.0" text="INTERNACIÓN" />
                                     <Label layoutX="117.0" layoutY="84.0" prefHeight="22.0" prefWidth="137.0" text="MEDICAMENTO/INSUMO" />
                                     <Label layoutX="474.0" layoutY="12.0" prefHeight="23.0" prefWidth="86.0" text="OBSERVACIÓN" />
-                                    <TableView layoutX="73.0" layoutY="163.0" prefHeight="160.0" prefWidth="680.0">
+                                    <TableView fx:id="tblPedidos" layoutX="24.0" layoutY="163.0" prefHeight="160.0" prefWidth="819.0">
                                       <columns>
-                                          <TableColumn prefWidth="72.7999267578125" text="Id_Pedido" />
-                                        <TableColumn prefWidth="75.0" text="Proveedor" />
-                                          <TableColumn prefWidth="136.00003051757812" text="Medicamento/Insumo" />
-                                          <TableColumn prefWidth="59.199951171875" text="Expira" />
-                                          <TableColumn prefWidth="56.00006103515625" text="Cantidad" />
-                                          <TableColumn prefWidth="82.4000244140625" text="Valor" />
-                                          <TableColumn prefWidth="108.79998779296875" text="Fecha Pedido" />
-                                          <TableColumn prefWidth="86.39990234375" text="Observación" />
+                                          <TableColumn fx:id="colIdPedido" prefWidth="72.7999267578125" text="Id_Pedido" />
+                                        <TableColumn fx:id="colIdProveedorPedido" prefWidth="75.0" text="Proveedor" />
+                                          <TableColumn fx:id="colIdMedicamentoPedido" prefWidth="136.00003051757812" text="Medicamento" />
+                                          <TableColumn fx:id="colIdInsumoPedido" prefWidth="136.00003051757812" text="Insumo" />
+                                          <TableColumn fx:id="colFechaExpiracion" prefWidth="59.199951171875" text="Expira" />
+                                          <TableColumn fx:id="colCantidadPedido" prefWidth="56.00006103515625" text="Cantidad" />
+                                          <TableColumn fx:id="colValorUnitario" prefWidth="82.4000244140625" text="Valor" />
+                                          <TableColumn fx:id="colFechaPedido" prefWidth="108.79998779296875" text="Fecha Pedido" />
+                                          <TableColumn fx:id="colObservacion" prefWidth="86.39990234375" text="Observación" />
                                       </columns>
                                     </TableView>
                                     <Button fx:id="btnBuscar11" layoutX="282.0" layoutY="126.0" mnemonicParsing="false" onAction="#handleBuscar" prefHeight="30.0" prefWidth="131.0" text="AÑADIR" />
@@ -135,7 +137,7 @@
                   </AnchorPane>
                </content>
             </Tab>
-            <Tab fx:id="tabConductores1" text="ENTREGAS">
+            <Tab fx:id="tabEntregas" text="ENTREGAS">
                <content>
                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
@@ -153,15 +155,16 @@
                                     <Label layoutX="176.0" layoutY="50.0" prefHeight="23.0" prefWidth="78.0" text="INTERNACIÓN" />
                                     <Label layoutX="117.0" layoutY="84.0" prefHeight="23.0" prefWidth="137.0" text="MEDICAMENTO/INSUMO" />
                                     <Label layoutX="500.0" layoutY="25.0" prefHeight="23.0" prefWidth="86.0" text="OBSERVACIÓN" />
-                                    <TableView layoutX="94.0" layoutY="158.0" prefHeight="160.0" prefWidth="647.0">
+                                    <TableView fx:id="tblEntregas" layoutX="47.0" layoutY="166.0" prefHeight="160.0" prefWidth="794.0">
                                        <columns>
-                                          <TableColumn prefWidth="75.0" text="Id_Entregas" />
-                                          <TableColumn prefWidth="91.20001220703125" text="Id_Internación" />
-                                          <TableColumn prefWidth="79.20001220703125" text="Proveedor" />
-                                          <TableColumn prefWidth="150.4000244140625" text="Medicamento/Insumo" />
-                                          <TableColumn prefWidth="85.5999755859375" text="Entrega" />
-                                          <TableColumn prefWidth="73.60003662109375" text="Cantidad" />
-                                          <TableColumn prefWidth="85.5999755859375" text="Observación" />
+                                          <TableColumn fx:id="colIdEntregas" prefWidth="75.0" text="Id_Entregas" />
+                                          <TableColumn fx:id="colIdInternacion" prefWidth="91.20001220703125" text="Id_Internación" />
+                                          <TableColumn fx:id="colIdProveedorEnt" prefWidth="79.20001220703125" text="Proveedor" />
+                                          <TableColumn fx:id="colIdMedicamentoEnt" prefWidth="150.4000244140625" text="Medicamento" />
+                                          <TableColumn fx:id="colIdInsumoEnt" prefWidth="150.4000244140625" text="Insumo" />
+                                          <TableColumn fx:id="colFechaEntregas" prefWidth="85.5999755859375" text="Entrega" />
+                                          <TableColumn fx:id="colCantidadEnt" prefWidth="73.60003662109375" text="Cantidad" />
+                                          <TableColumn fx:id="colObservacionEnt" prefWidth="85.5999755859375" text="Observación" />
                                        </columns>
                                     </TableView>
                                     <Button fx:id="btnBuscar111" layoutX="282.0" layoutY="116.0" mnemonicParsing="false" onAction="#handleBuscar" prefHeight="30.0" prefWidth="131.0" text="AÑADIR" />
@@ -175,22 +178,23 @@
                   </AnchorPane>
                </content>
             </Tab>
-            <Tab fx:id="tabVehiculos" text="HISTORIAL">
+            <Tab fx:id="tabHistorial" text="HISTORIAL">
                <content>
                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
                         <BorderPane prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
                            <center>
-                              <TableView fx:id="tblVehiculo" prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #A3C7E4; -fx-border-width: 1;" BorderPane.alignment="CENTER">
+                              <TableView fx:id="tblHistorial" prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #A3C7E4; -fx-border-width: 1;" BorderPane.alignment="CENTER">
                                  <columns>
-                                    <TableColumn fx:id="colcodVehiculo" prefWidth="78.39998507499695" text="Id_Historial" />
-                                    <TableColumn fx:id="colcodVehiculo11" prefWidth="87.20001220703125" text="Id_Internación" />
-                                    <TableColumn fx:id="colTerminalVehiculo" prefWidth="111.199951171875" text="Tipo_movimiento" />
-                                    <TableColumn fx:id="colcodVehiculo1" prefWidth="85.60002136230469" text="Proveedor" />
-                                    <TableColumn fx:id="colcodVehiculo111" prefWidth="146.39996337890625" text="Medicamento/Insumo" />
-                                    <TableColumn fx:id="colcodVehiculo1111" prefWidth="74.39996337890625" text="Fecha" />
-                                    <TableColumn fx:id="colcodVehiculo112" prefWidth="76.800048828125" text="Cantidad" />
-                                    <TableColumn fx:id="colcodVehiculo1122" prefWidth="124.79998779296875" text="Observación" />
+                                    <TableColumn fx:id="colIdHistorial" prefWidth="78.39998507499695" text="Id_Historial" />
+                                    <TableColumn fx:id="colIdInternacionHist" prefWidth="87.20001220703125" text="Id_Internación" />
+                                    <TableColumn fx:id="colTipoMovimiento" prefWidth="111.199951171875" text="Tipo_movimiento" />
+                                    <TableColumn fx:id="colIdProveedorHist" prefWidth="85.60002136230469" text="Proveedor" />
+                                    <TableColumn fx:id="colIdMedicamentoHist" prefWidth="146.39996337890625" text="Medicamento" />
+                                    <TableColumn fx:id="colIdInsumoHist" prefWidth="74.39996337890625" text="Insumo" />
+                                    <TableColumn fx:id="colFechaMovimiento" prefWidth="74.39996337890625" text="Fecha" />
+                                    <TableColumn fx:id="colCantidadHist" prefWidth="76.800048828125" text="Cantidad" />
+                                    <TableColumn fx:id="colObservacionHist" prefWidth="124.79998779296875" text="Observación" />
                                  </columns>
                               </TableView>
                            </center>
