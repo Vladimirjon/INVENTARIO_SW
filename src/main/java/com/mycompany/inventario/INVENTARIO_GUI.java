@@ -14,6 +14,7 @@ import java.util.ResourceBundle;
 import InventarioDAL.EntregasVista;
 import InventarioDAL.HistorialMovimientoVista;
 import InventarioDAL.InsumoVista;
+import InventarioDAL.MedicamentoInsumoVista;
 import InventarioDAL.MedicamentoVista;
 import InventarioDAL.PedidoVista;
 import InventarioDAL.ProveedorVista;
@@ -21,8 +22,11 @@ import inventarioBLL.ConductorVistaService;
 import inventarioBLL.EntregaService;
 import inventarioBLL.HistorialService;
 import inventarioBLL.InsumoService;
+import inventarioBLL.MedicamentoInsumoService;
 import inventarioBLL.PedidoService;
 import inventarioBLL.ProveedorVistaService;
+import inventarioBLL.*;
+import InventarioDAL.*;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -30,6 +34,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.control.TableColumn;
@@ -157,6 +162,8 @@ colObservacionHist .setCellValueFactory(new PropertyValueFactory<>("observacion"
 
 
 // Tabla Pedidos
+@FXML private ChoiceBox<ProveedorVista> choiceProveedor; // Cambia el tipo según tu modelo
+@FXML private ChoiceBox<MedicamentoInsumoVista> choiceMedicamentoInsumo;      // Cambia el tipo según tu modelo
 @FXML private TableView<PedidoVista> tblPedidos;
 @FXML private TableColumn<PedidoVista, Integer>    colIdPedido;
 @FXML private TableColumn<PedidoVista, Integer>    colIdProveedorPedido;
@@ -234,7 +241,22 @@ colObservacionHist .setCellValueFactory(new PropertyValueFactory<>("observacion"
     // 3) Asigna al TableView
     tblPedidos.setItems(data);
 
-
+    ProveedorVistaService proveedorService = new ProveedorVistaService();
+    List<ProveedorVista> proveedores = proveedorService.obtenerTodosLosProveedores();
+    ObservableList<ProveedorVista> obsProveedores = FXCollections.observableArrayList(proveedores);
+    choiceProveedor.setItems(obsProveedores);  
+    
+    choiceProveedor.getSelectionModel().selectedItemProperty().addListener((observable, oldVal, newVal) -> {
+    if (newVal != null) {
+        int idProveedor = newVal.getIdProveedor();
+        MedicamentoInsumoService service = new MedicamentoInsumoService();
+        List<MedicamentoInsumoVista> medInsumoList = service.obtenerMedicamentosEInsumosPorProveedor(idProveedor);
+        ObservableList<MedicamentoInsumoVista> obsLista = FXCollections.observableArrayList(medInsumoList);
+        choiceMedicamentoInsumo.setItems(obsLista);
+    } else {
+        choiceMedicamentoInsumo.getItems().clear();
+    }
+    });
 
     }
 

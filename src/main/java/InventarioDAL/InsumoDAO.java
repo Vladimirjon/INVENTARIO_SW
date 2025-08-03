@@ -40,4 +40,19 @@ public class InsumoDAO {
 
         return lista;
     }
+    public List<MedicamentoInsumoVista> obtenerInsumosPorProveedor(int idProveedor) {
+        List<MedicamentoInsumoVista> lista = new ArrayList<>();
+        String sql = "SELECT id_insumo, nombre_comercial FROM Insumo WHERE id_proveedor = ?";
+        try (Connection conn = ConexionBD.conectar();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setInt(1, idProveedor);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                lista.add(new MedicamentoInsumoVista(rs.getInt("id_insumo"), rs.getString("nombre_comercial"), "INSUMO"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return lista;
+    }
 }

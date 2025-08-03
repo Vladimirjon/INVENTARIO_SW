@@ -23,9 +23,8 @@ public class ProveedorVista {
     // Constructor
     public ProveedorVista(int idProveedor, String nombre, String ruc) {
         this.idProveedor = idProveedor;
-        this.ruc = ruc;
         this.nombre = nombre;
-        
+        this.ruc = ruc;        
     }
 
     // Getters y setters
@@ -47,6 +46,11 @@ public class ProveedorVista {
 
     public String getRuc() {
         return ruc;
+    }
+
+    @Override
+    public String toString() {
+        return nombre; // o el campo que quieras mostrar
     }
 
 //    public void setRuc(String ruc) {

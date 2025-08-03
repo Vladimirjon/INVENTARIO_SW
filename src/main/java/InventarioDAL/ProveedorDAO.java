@@ -24,8 +24,9 @@ public class ProveedorDAO {
             while (rs.next()) {
                 ProveedorVista Proveedor = new ProveedorVista(
                     rs.getInt("id_proveedor"),
-                    rs.getString("ruc"),
-                    rs.getString("nombre")
+                    rs.getString("nombre"),
+                    rs.getString("ruc")
+
                 );
                 lista.add(Proveedor);
             }
