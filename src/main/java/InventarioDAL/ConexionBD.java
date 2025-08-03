@@ -15,7 +15,6 @@ import java.sql.SQLException;
  */
 public class ConexionBD {
     private static final String URL = "jdbc:sqlserver://VLADIMIRJON;"
-    //private static final String URL = "jdbc:sqlserver://VLADIMIRJON;" -- Tu maquina 
                 + "databaseName=polisalud;"
                 + "encrypt=true;"
                 +"trustServerCertificate=true";

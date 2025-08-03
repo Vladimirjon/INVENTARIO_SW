@@ -4,9 +4,10 @@
  */
 package inventarioBLL;
 
+import java.util.List;
+
 import InventarioDAL.MedicamentoVista;
 import InventarioDAL.MedicamentoVistaDAO;
-import java.util.List;
 
 /**
  *
@@ -22,7 +23,7 @@ public class ConductorVistaService {
 
     // Método para obtener todos los terminales desde la vista
     public List<MedicamentoVista> obtenerTodosLosConductores() {
-        return dao.obtenerTodosLosConductores();
+        return dao.obtenerTodosLosMedicamentos();
     }
 
     // Aquí puedes agregar más lógica de negocio, validaciones, filtros, etc.

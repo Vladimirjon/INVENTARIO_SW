@@ -1,52 +1,99 @@
 package InventarioDAL;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
+/**
+ * Representa la vista de entregas en el inventario.
+ */
 public class EntregasVista {
-    private int idEgreso;
-    private String proveedorNombre;
-    private String hospitalNombre;
-    private String medicamentoNombre;
-    private LocalDateTime fechaEgreso;
+    private int idEntregas;
+    private int idInternacion;
+    private int idProveedor;
+    private int idMedicamento;
+    private int idInsumo;
+    private LocalDate fechaEntregas;
     private int cantidad;
-    private String observaciones;
+    private String observacion;
 
-    public EntregasVista(int idEgreso, String proveedorNombre, String hospitalNombre, String medicamentoNombre,
-                       LocalDateTime fechaEgreso, int cantidad, String observaciones) {
-        this.idEgreso = idEgreso;
-        this.proveedorNombre = proveedorNombre;
-        this.hospitalNombre = hospitalNombre;
-        this.medicamentoNombre = medicamentoNombre;
-        this.fechaEgreso = fechaEgreso;
-        this.cantidad = cantidad;
-        this.observaciones = observaciones;
+    public EntregasVista(int idEntregas,
+                        int idInternacion,
+                        int idProveedor,
+                        int idMedicamento,
+                        int idInsumo,
+                        LocalDate fechaEntregas,
+                        int cantidad,
+                        String observacion) {
+        this.idEntregas     = idEntregas;
+        this.idInternacion  = idInternacion;
+        this.idProveedor    = idProveedor;
+        this.idMedicamento  = idMedicamento;
+        this.idInsumo       = idInsumo;
+        this.fechaEntregas  = fechaEntregas;
+        this.cantidad       = cantidad;
+        this.observacion    = observacion;
     }
 
-    public int getIdEgreso() {
-        return idEgreso;
+    public int getIdEntregas() {
+        return idEntregas;
     }
 
-    public String getProveedorNombre() {
-        return proveedorNombre;
+    public void setIdEntregas(int idEntregas) {
+        this.idEntregas = idEntregas;
     }
 
-    public String getHospitalNombre() {
-        return hospitalNombre;
+    public int getIdInternacion() {
+        return idInternacion;
     }
 
-    public String getMedicamentoNombre() {
-        return medicamentoNombre;
+    public void setIdInternacion(int idInternacion) {
+        this.idInternacion = idInternacion;
     }
 
-    public LocalDateTime getFechaEgreso() {
-        return fechaEgreso;
+    public int getIdProveedor() {
+        return idProveedor;
+    }
+
+    public void setIdProveedor(int idProveedor) {
+        this.idProveedor = idProveedor;
+    }
+
+    public int getIdMedicamento() {
+        return idMedicamento;
+    }
+
+    public void setIdMedicamento(int idMedicamento) {
+        this.idMedicamento = idMedicamento;
+    }
+
+    public int getIdInsumo() {
+        return idInsumo;
+    }
+
+    public void setIdInsumo(int idInsumo) {
+        this.idInsumo = idInsumo;
+    }
+
+    public LocalDate getFechaEntregas() {
+        return fechaEntregas;
+    }
+
+    public void setFechaEntregas(LocalDate fechaEntregas) {
+        this.fechaEntregas = fechaEntregas;
     }
 
     public int getCantidad() {
         return cantidad;
     }
 
-    public String getObservaciones() {
-        return observaciones;
+    public void setCantidad(int cantidad) {
+        this.cantidad = cantidad;
+    }
+
+    public String getObservacion() {
+        return observacion;
+    }
+
+    public void setObservacion(String observacion) {
+        this.observacion = observacion;
     }
 }

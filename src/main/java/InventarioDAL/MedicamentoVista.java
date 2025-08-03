@@ -4,8 +4,6 @@
  */
 package InventarioDAL;
 
-import java.time.LocalDateTime;
-
 /**
  *
  * @author Johann
@@ -14,13 +12,18 @@ public class MedicamentoVista {
     
     private int Id_Medicamento;
     private String CUM;
-    private String Proveedor;
-    public String getProveedor() {
-        return Proveedor;
+    public int id_proveedor;
+
+    public int getId_proveedor() {
+        return id_proveedor;
     }
 
-    public void setProveedor(String proveedor) {
-        Proveedor = proveedor;
+    public void setId_proveedor(int id_proveedor) {
+        this.id_proveedor = id_proveedor;
+    }
+
+    public void setProveedor(int proveedor) {
+        id_proveedor = proveedor;
     }
 
     private String Nombre_Generico;
@@ -79,12 +82,13 @@ public class MedicamentoVista {
         Presentacion = presentacion;
     }
 
-    public MedicamentoVista(int Id_Medicamento, String CUM, String Proveedor, String Nombre_Generico, String Nombre_Comercial,
+    public MedicamentoVista(int Id_Medicamento, int id_proveedor, String CUM, String Nombre_Generico, String Nombre_Comercial,
                            int Cantidad, String FormaFarmaceutica, String Concentracion, String Presentacion) {
         
         this.Id_Medicamento = Id_Medicamento;
+        this.id_proveedor = id_proveedor;
         this.CUM = CUM;
-        this.Proveedor = Proveedor;
+        this.id_proveedor = id_proveedor;
         this.Nombre_Generico = Nombre_Generico;
         this.Nombre_Comercial = Nombre_Comercial;
         this.Cantidad = Cantidad;
