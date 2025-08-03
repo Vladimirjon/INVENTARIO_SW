@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="476.0" prefWidth="879.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.inventario.INVENTARIO_GUI">
+   <top>
+      <HBox prefHeight="72.0" prefWidth="650.0" spacing="20.0" style="-fx-background-color: #A3C7E4; -fx-padding: 10;" BorderPane.alignment="CENTER_LEFT">
+         <children>
+            <ImageView fitHeight="59.0" fitWidth="67.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@BuhoV2.png" />
+               </image>
+            </ImageView>
+            <Label prefHeight="59.0" prefWidth="562.0" text="               INVENTARIO &amp; INSUMOS" textFill="#333333">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font></Label>
+            <Button fx:id="btnSalir" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#handleSalir" prefHeight="59.0" prefWidth="114.0" style="-fx-background-color: #E49A9A; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 10; -fx-padding: 5;" text="SALIR" textAlignment="CENTER" />
+         </children>
+      </HBox>
+   </top>
+   <center>
+      <TabPane fx:id="tabPane" prefHeight="299.0" prefWidth="600.0" style="-fx-background-color: #F0F8FF; -fx-border-color: #A3C7E4; -fx-border-width: 1;" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
+        <tabs>
+          <Tab fx:id="tabMedicamentos" text="BODEGA">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <BorderPane prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
+                           <top>
+                              <TableView fx:id="tblTerminal" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="155.0" prefWidth="868.0" style="-fx-border-color: #A3C7E4; -fx-border-width: 1;" BorderPane.alignment="CENTER">
+                                 <columns>
+                                    <TableColumn fx:id="colcodIdMedicamento" prefWidth="102.4000153541565" text="Id_Medicamento" />
+                                    <TableColumn fx:id="colcodCUM" prefWidth="41.5999755859375" text="CUM" />
+                                    <TableColumn fx:id="colProveedor" prefWidth="78.4000015258789" text="Proveedor" />
+                                    <TableColumn fx:id="colNombreGenerico" prefWidth="112.00009155273438" text="Nombre_Genérico" />
+                                    <TableColumn fx:id="colNombreComercial" prefWidth="123.199951171875" text="Nombre_Comercial" />
+                                    <TableColumn fx:id="colCantidad" prefWidth="59.20001220703125" text="Cantidad" />
+                                    <TableColumn fx:id="colFormaFarmaceutica" prefWidth="162.39999389648438" text="Forma_farmacéutica" />
+                                    <TableColumn fx:id="colConcentracion" prefWidth="90.39996337890625" text="Concentracion" />
+                                    <TableColumn fx:id="colPresentacion" prefWidth="88.0" text="Presentación" />
+                                 </columns>
+                                 <BorderPane.margin>
+                                    <Insets />
+                                 </BorderPane.margin>
+                              </TableView>
+                           </top>
+                           <center>
+                              <TableView prefHeight="170.0" prefWidth="870.0" BorderPane.alignment="CENTER">
+                                <columns>
+                                  <TableColumn prefWidth="75.0" text="Id_Insumo" />
+                                  <TableColumn prefWidth="75.0" text="CUDIM" />
+                                    <TableColumn prefWidth="112.00003051757812" text="Nombre_Genérico" />
+                                    <TableColumn prefWidth="119.20001220703125" text="Nombre_Comercial" />
+                                    <TableColumn prefWidth="108.0" text="Cantidad" />
+                                    <TableColumn prefWidth="157.5999755859375" text="Especificación Técnica" />
+                                    <TableColumn prefWidth="107.199951171875" text="Especialidad" />
+                                </columns>
+                              </TableView>
+                           </center>
+                        </BorderPane>
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+          <Tab fx:id="tabProveedores" text="PROVEEDORES">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <BorderPane layoutX="214.0" layoutY="18.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
+                           <center>
+                              <TableView fx:id="tblProveedor" prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #A3C7E4; -fx-border-width: 1;" BorderPane.alignment="CENTER">
+                                <columns>
+                                    <TableColumn fx:id="colcodProveedor" prefWidth="109.59993767738342" text="id_proveedor" />
+                                  <TableColumn fx:id="colNombreProveedor" prefWidth="92.79999542236328" text="RUC" />
+                                    <TableColumn fx:id="colRUC" prefWidth="186.40005493164062" text="Nombre_Proveedor" />
+                                  
+                                </columns>
+                              </TableView>
+                           </center>
+                        </BorderPane>
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+            <Tab fx:id="tabConductores" text="PEDIDOS">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <BorderPane prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
+                           <top>
+                              <AnchorPane prefHeight="326.0" prefWidth="866.0" BorderPane.alignment="CENTER">
+                                 <children>
+                                    <ChoiceBox layoutX="282.0" layoutY="11.0" prefWidth="150.0" />
+                                    <ChoiceBox layoutX="282.0" layoutY="49.0" prefWidth="150.0" />
+                                    <ChoiceBox layoutX="282.0" layoutY="83.0" prefWidth="150.0" />
+                                    <Label layoutX="185.0" layoutY="8.0" prefHeight="32.0" prefWidth="70.0" text="PROVEEDOR" />
+                                    <Label layoutX="175.0" layoutY="50.0" prefHeight="23.0" prefWidth="79.0" text="INTERNACIÓN" />
+                                    <Label layoutX="117.0" layoutY="84.0" prefHeight="22.0" prefWidth="137.0" text="MEDICAMENTO/INSUMO" />
+                                    <Label layoutX="474.0" layoutY="12.0" prefHeight="23.0" prefWidth="86.0" text="OBSERVACIÓN" />
+                                    <TableView layoutX="73.0" layoutY="163.0" prefHeight="160.0" prefWidth="680.0">
+                                      <columns>
+                                          <TableColumn prefWidth="72.7999267578125" text="Id_Pedido" />
+                                        <TableColumn prefWidth="75.0" text="Proveedor" />
+                                          <TableColumn prefWidth="136.00003051757812" text="Medicamento/Insumo" />
+                                          <TableColumn prefWidth="59.199951171875" text="Expira" />
+                                          <TableColumn prefWidth="56.00006103515625" text="Cantidad" />
+                                          <TableColumn prefWidth="82.4000244140625" text="Valor" />
+                                          <TableColumn prefWidth="108.79998779296875" text="Fecha Pedido" />
+                                          <TableColumn prefWidth="86.39990234375" text="Observación" />
+                                      </columns>
+                                    </TableView>
+                                    <Button fx:id="btnBuscar11" layoutX="282.0" layoutY="126.0" mnemonicParsing="false" onAction="#handleBuscar" prefHeight="30.0" prefWidth="131.0" text="AÑADIR" />
+                                    <TextField layoutX="583.0" layoutY="11.0" prefHeight="102.0" prefWidth="188.0" />
+                                    <Button fx:id="btnBuscar1" layoutX="474.0" layoutY="126.0" mnemonicParsing="false" onAction="#handleBuscar" prefHeight="30.0" prefWidth="131.0" text="GUARDAR PEDIDO" />
+                                 </children>
+                              </AnchorPane>
+                           </top>
+                        </BorderPane>
+                     </children>
+                  </AnchorPane>
+               </content>
+            </Tab>
+            <Tab fx:id="tabConductores1" text="ENTREGAS">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <BorderPane prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
+                           <center>
+                              <Label prefHeight="23.0" prefWidth="68.0" text="Cantidad" BorderPane.alignment="CENTER" />
+                           </center>
+                           <top>
+                              <AnchorPane prefHeight="391.0" prefWidth="868.0" BorderPane.alignment="CENTER">
+                                 <children>
+                                    <ChoiceBox layoutX="282.0" layoutY="11.0" prefWidth="150.0" />
+                                    <ChoiceBox layoutX="282.0" layoutY="49.0" prefWidth="150.0" />
+                                    <ChoiceBox layoutX="282.0" layoutY="83.0" prefWidth="150.0" />
+                                    <Label layoutX="186.0" layoutY="9.0" prefHeight="32.0" prefWidth="70.0" text="PROVEEDOR" />
+                                    <Label layoutX="176.0" layoutY="50.0" prefHeight="23.0" prefWidth="78.0" text="INTERNACIÓN" />
+                                    <Label layoutX="117.0" layoutY="84.0" prefHeight="23.0" prefWidth="137.0" text="MEDICAMENTO/INSUMO" />
+                                    <Label layoutX="500.0" layoutY="25.0" prefHeight="23.0" prefWidth="86.0" text="OBSERVACIÓN" />
+                                    <TableView layoutX="94.0" layoutY="158.0" prefHeight="160.0" prefWidth="647.0">
+                                       <columns>
+                                          <TableColumn prefWidth="75.0" text="Id_Entregas" />
+                                          <TableColumn prefWidth="91.20001220703125" text="Id_Internación" />
+                                          <TableColumn prefWidth="79.20001220703125" text="Proveedor" />
+                                          <TableColumn prefWidth="150.4000244140625" text="Medicamento/Insumo" />
+                                          <TableColumn prefWidth="85.5999755859375" text="Entrega" />
+                                          <TableColumn prefWidth="73.60003662109375" text="Cantidad" />
+                                          <TableColumn prefWidth="85.5999755859375" text="Observación" />
+                                       </columns>
+                                    </TableView>
+                                    <Button fx:id="btnBuscar111" layoutX="282.0" layoutY="116.0" mnemonicParsing="false" onAction="#handleBuscar" prefHeight="30.0" prefWidth="131.0" text="AÑADIR" />
+                                    <Button fx:id="btnBuscar1111" layoutX="434.0" layoutY="116.0" mnemonicParsing="false" onAction="#handleBuscar" prefHeight="30.0" prefWidth="131.0" text="GUARDAR ENTREGA" />
+                                    <TextField layoutX="597.0" layoutY="20.0" prefHeight="106.0" prefWidth="185.0" />
+                                 </children>
+                              </AnchorPane>
+                           </top>
+                        </BorderPane>
+                     </children>
+                  </AnchorPane>
+               </content>
+            </Tab>
+            <Tab fx:id="tabVehiculos" text="HISTORIAL">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <BorderPane prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
+                           <center>
+                              <TableView fx:id="tblVehiculo" prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #A3C7E4; -fx-border-width: 1;" BorderPane.alignment="CENTER">
+                                 <columns>
+                                    <TableColumn fx:id="colcodVehiculo" prefWidth="78.39998507499695" text="Id_Historial" />
+                                    <TableColumn fx:id="colcodVehiculo11" prefWidth="87.20001220703125" text="Id_Internación" />
+                                    <TableColumn fx:id="colTerminalVehiculo" prefWidth="111.199951171875" text="Tipo_movimiento" />
+                                    <TableColumn fx:id="colcodVehiculo1" prefWidth="85.60002136230469" text="Proveedor" />
+                                    <TableColumn fx:id="colcodVehiculo111" prefWidth="146.39996337890625" text="Medicamento/Insumo" />
+                                    <TableColumn fx:id="colcodVehiculo1111" prefWidth="74.39996337890625" text="Fecha" />
+                                    <TableColumn fx:id="colcodVehiculo112" prefWidth="76.800048828125" text="Cantidad" />
+                                    <TableColumn fx:id="colcodVehiculo1122" prefWidth="124.79998779296875" text="Observación" />
+                                 </columns>
+                              </TableView>
+                           </center>
+                        </BorderPane>
+                     </children>
+                  </AnchorPane>
+               </content>
+            </Tab>
+        </tabs>
+      </TabPane>
+   </center>
+</BorderPane>
