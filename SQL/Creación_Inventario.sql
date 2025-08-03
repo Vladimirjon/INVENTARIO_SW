@@ -12,8 +12,10 @@ GO
 
 CREATE TABLE dbo.Medicamento (
     id_medicamento     INT           IDENTITY(1,1) PRIMARY KEY,
+    id_proveedor       INT           NOT NULL
+        CONSTRAINT FK_Medicamento_Proveedor 
+        REFERENCES dbo.Proveedor(id_proveedor),
     CUM                VARCHAR(50)   NOT NULL,
-    proveedor          VARCHAR(100)  NOT NULL,
     nombre_generico    VARCHAR(100)  NOT NULL,
     nombre_comercial   VARCHAR(100)  NOT NULL,
     cantidad           INT           NOT NULL,
@@ -25,6 +27,9 @@ GO
 
 CREATE TABLE dbo.Insumo (
     id_insumo              INT           IDENTITY(1,1) PRIMARY KEY,
+    id_proveedor           INT           NOT NULL
+        CONSTRAINT FK_Insumo_Proveedor
+        REFERENCES dbo.Proveedor(id_proveedor),
     cudim                  VARCHAR(20)   NOT NULL,
     nombre_generico        VARCHAR(100)  NOT NULL,
     nombre_comercial       VARCHAR(100)  NOT NULL,    
@@ -46,7 +51,7 @@ CREATE TABLE dbo.Pedidos (
         CONSTRAINT FK_Pedidos_Proveedor 
         REFERENCES dbo.proveedor(id_proveedor),
     
-    -- Pedido de medicamento _o_ insumo
+    -- Pedido de medicamento o insumo
     id_medicamento    INT            NULL
         CONSTRAINT FK_Pedidos_Medicamento 
         REFERENCES dbo.medicamento(id_medicamento),
@@ -61,7 +66,7 @@ CREATE TABLE dbo.Pedidos (
     fecha_pedido      DATETIME       NOT NULL,
     observacion     NVARCHAR(MAX)  NULL,
 
-    -- Asegura que solo uno de los dos (medicamento _o_ insumo) esté presente
+    -- Asegura que solo uno de los dos (medicamento o insumo) esté presente
     CONSTRAINT CHK_Pedidos_Item CHECK (
         (id_medicamento IS NOT NULL AND id_insumo IS NULL)
      OR (id_medicamento IS NULL    AND id_insumo IS NOT NULL)
