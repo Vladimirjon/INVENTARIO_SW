@@ -11,13 +11,6 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.ResourceBundle;
 
-import InventarioDAL.EntregasVista;
-import InventarioDAL.HistorialMovimientoVista;
-import InventarioDAL.InsumoVista;
-import InventarioDAL.MedicamentoInsumoVista;
-import InventarioDAL.MedicamentoVista;
-import InventarioDAL.PedidoVista;
-import InventarioDAL.ProveedorVista;
 import inventarioBLL.ConductorVistaService;
 import inventarioBLL.EntregaService;
 import inventarioBLL.HistorialService;
@@ -88,9 +81,7 @@ public class INVENTARIO_GUI implements Initializable {
 colIdProveedorPedido   .setCellValueFactory(new PropertyValueFactory<>("idProveedor"));
 colIdMedicamentoPedido .setCellValueFactory(new PropertyValueFactory<>("idMedicamento"));
 colIdInsumoPedido      .setCellValueFactory(new PropertyValueFactory<>("idInsumo"));
-colFechaExpiracion     .setCellValueFactory(new PropertyValueFactory<>("fechaExpiracion"));
 colCantidadPedido      .setCellValueFactory(new PropertyValueFactory<>("Cantidad"));
-colValorUnitario       .setCellValueFactory(new PropertyValueFactory<>("valorUnitario"));
 colFechaPedido         .setCellValueFactory(new PropertyValueFactory<>("fechaPedido"));
 colObservacion         .setCellValueFactory(new PropertyValueFactory<>("Observacion"));
 // Entregas 
@@ -123,7 +114,8 @@ colObservacionHist .setCellValueFactory(new PropertyValueFactory<>("observacion"
     }    
     
     @FXML private Button btnSalir;
-    @FXML private Button btnBuscar;
+    @FXML private Button btnAñadirPedido;
+    @FXML private Button btnAñadirEntrega;
     @FXML private TabPane tabPane;
     @FXML private Tab tabMedicamentos, tabProveedores, tabPedidos, tabEntregas, tabHistorial;
     
@@ -162,6 +154,9 @@ colObservacionHist .setCellValueFactory(new PropertyValueFactory<>("observacion"
 
 
 // Tabla Pedidos
+
+@FXML private javafx.scene.control.TextField txtObservacionPedido;
+@FXML private javafx.scene.control.TextField txtCantidadPedido;
 @FXML private ChoiceBox<ProveedorVista> choiceProveedor; // Cambia el tipo según tu modelo
 @FXML private ChoiceBox<MedicamentoInsumoVista> choiceMedicamentoInsumo;      // Cambia el tipo según tu modelo
 @FXML private TableView<PedidoVista> tblPedidos;
@@ -169,9 +164,7 @@ colObservacionHist .setCellValueFactory(new PropertyValueFactory<>("observacion"
 @FXML private TableColumn<PedidoVista, Integer>    colIdProveedorPedido;
 @FXML private TableColumn<PedidoVista, Integer>    colIdMedicamentoPedido;
 @FXML private TableColumn<PedidoVista, Integer>    colIdInsumoPedido;
-@FXML private TableColumn<PedidoVista, LocalDate>  colFechaExpiracion;
 @FXML private TableColumn<PedidoVista, Integer>    colCantidadPedido;
-@FXML private TableColumn<PedidoVista, BigDecimal> colValorUnitario;
 @FXML private TableColumn<PedidoVista, LocalDate>  colFechaPedido;
 @FXML private TableColumn<PedidoVista, String>     colObservacion;
 
@@ -311,17 +304,70 @@ if (isEntregas) {
     }
     
 
+private void cargarPedidos() {
+    PedidoService pedidoService = new PedidoService();
+    List<PedidoVista> pedidos = pedidoService.obtenerTodosLosPedidos();
+    ObservableList<PedidoVista> obsPedidos = FXCollections.observableArrayList(pedidos);
+    tblPedidos.setItems(obsPedidos);
+}
 
+@FXML
+private void handleAñadirPedido(ActionEvent event) {
+    System.out.println("Añadir pedido presionado");
 
-    @FXML private void handleBuscar(ActionEvent event) {
-    //LocalDate desde = dpFechaDesde.getValue();
-    //LocalDate hasta = dpFechaHasta.getValue();
-    // 1) Validación sencilla
-    /*if (desde == null || hasta == null || desde.isAfter(hasta)) {
-        new Alert(Alert.AlertType.WARNING,
-            "Seleccione un rango de fechas válido."
-        ).showAndWait();
+    ProveedorVista proveedor = choiceProveedor.getValue();
+    MedicamentoInsumoVista medIns = choiceMedicamentoInsumo.getValue();
+    String cantidadStr = txtCantidadPedido.getText();
+    String observacion = txtObservacionPedido.getText();
+
+    // Validación
+    if (proveedor == null || medIns == null || cantidadStr.isEmpty()) {
+        new javafx.scene.control.Alert(javafx.scene.control.Alert.AlertType.WARNING, 
+            "Debes seleccionar un proveedor, un medicamento/insumo y una cantidad.").showAndWait();
         return;
-    }*/}}
+    }
 
+    int cantidad;
+    try {
+        cantidad = Integer.parseInt(cantidadStr);
+        if (cantidad <= 0) throw new NumberFormatException();
+    } catch (NumberFormatException e) {
+        new javafx.scene.control.Alert(javafx.scene.control.Alert.AlertType.WARNING, 
+            "La cantidad debe ser un número entero positivo.").showAndWait();
+        return;
+    }
 
+    // Usar null en vez de 0 para cumplir la restricción CHECK
+    Integer idMedicamento = medIns.getTipo().equals("MEDICAMENTO") ? medIns.getId() : null;
+    Integer idInsumo = medIns.getTipo().equals("INSUMO") ? medIns.getId() : null;
+
+    PedidoDAO pedidoDAO = new PedidoDAO();
+    int newId = pedidoDAO.insertarPedido(
+        proveedor.getIdProveedor(),
+        idMedicamento,
+        idInsumo,
+        cantidad,
+        LocalDate.now(),
+        observacion
+    );
+
+    if (newId != -1) {
+        new javafx.scene.control.Alert(javafx.scene.control.Alert.AlertType.INFORMATION, 
+            "Pedido registrado correctamente. ID generado: " + newId).showAndWait();
+        cargarPedidos();
+        choiceMedicamentoInsumo.setValue(null);
+        txtCantidadPedido.clear();
+        txtObservacionPedido.clear();
+    } else {
+        new javafx.scene.control.Alert(javafx.scene.control.Alert.AlertType.ERROR, 
+            "Error al registrar el pedido.").showAndWait();
+    }
+}
+
+@FXML
+private void handleAñadirEntrega(ActionEvent event) {
+    // Por ahora, puedes dejarlo vacío o con un print para probar
+    System.out.println("Añadir entrega presionado");
+}
+
+}

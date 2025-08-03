@@ -1,12 +1,11 @@
+// PedidoDAO.java
 package InventarioDAL;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.math.BigDecimal;
+import java.sql.*;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-
 
 /**
  * DAO para la tabla Pedidos.
@@ -31,9 +30,7 @@ public class PedidoDAO {
                     rs.getInt("id_proveedor"),
                     rs.getInt("id_medicamento"),
                     rs.getInt("id_insumo"),
-                    rs.getDate("fecha_expiracion").toLocalDate(),
                     rs.getInt("cantidad"),
-                    rs.getBigDecimal("valor_unitario"),
                     rs.getDate("fecha_pedido").toLocalDate(),
                     rs.getString("observacion")
                 );
@@ -46,4 +43,41 @@ public class PedidoDAO {
 
         return lista;
     }
+
+    /**
+     * Inserta un nuevo pedido usando el stored procedure sp_InsertarPedido.
+     * @return el nuevo id_pedido generado, o -1 si hubo error
+     */
+public int insertarPedido(int idProveedor, Integer idMedicamento, Integer idInsumo, int cantidad, LocalDate fechaPedido, String observacion) {
+    int newIdPedido = -1;
+    String sql = "{call sp_InsertarPedido(?, ?, ?, ?, ?, ?)}";
+    try (Connection conn = ConexionBD.conectar();
+         CallableStatement stmt = conn.prepareCall(sql)) {
+        stmt.setInt(1, idProveedor);
+
+        if (idMedicamento != null) {
+            stmt.setInt(2, idMedicamento);
+        } else {
+            stmt.setNull(2, java.sql.Types.INTEGER);
+        }
+
+        if (idInsumo != null) {
+            stmt.setInt(3, idInsumo);
+        } else {
+            stmt.setNull(3, java.sql.Types.INTEGER);
+        }
+
+        stmt.setInt(4, cantidad);
+        stmt.setDate(5, java.sql.Date.valueOf(fechaPedido));
+        stmt.setString(6, observacion);
+
+        ResultSet rs = stmt.executeQuery();
+        if (rs.next()) {
+            newIdPedido = rs.getInt(1);
+        }
+    } catch (SQLException e) {
+        e.printStackTrace();
+    }
+    return newIdPedido;
+}
 }

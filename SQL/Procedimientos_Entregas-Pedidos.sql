@@ -75,3 +75,49 @@ EXEC dbo.sp_InsertarEntrega
     @Observacion   = 'Entrega de insumos y medicamentos';
 -- Captura el ID generado:
 -- SET @NuevoEntregaID = SCOPE_IDENTITY();
+
+
+USE [polisalud];
+GO
+
+-- =============================================
+-- Author:      Johann
+-- Create date: 2025-08-03
+-- Description: Inserta un nuevo pedido en la tabla Pedidos.
+-- =============================================
+CREATE PROCEDURE dbo.sp_InsertarPedido
+    @IdProveedor     INT,
+    @IdMedicamento   INT,
+    @IdInsumo        INT,
+    @Cantidad        INT,
+    @FechaPedido     DATETIME,
+    @Observacion     NVARCHAR(MAX)
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    INSERT INTO dbo.Pedidos
+    (
+        id_proveedor,
+        id_medicamento,
+        id_insumo,
+        cantidad,
+        fecha_pedido,
+        observacion
+    )
+    VALUES
+    (
+        @IdProveedor,
+        @IdMedicamento,
+        @IdInsumo,
+        @Cantidad,
+        @FechaPedido,
+        @Observacion
+    );
+
+    -- Devuelve el nuevo id_pedido (asumiendo que es IDENTITY)
+    SELECT SCOPE_IDENTITY() AS NewIdPedido;
+END
+GO
+
+select * from Pedidos

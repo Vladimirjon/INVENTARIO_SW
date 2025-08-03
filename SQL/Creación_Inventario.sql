@@ -60,9 +60,7 @@ CREATE TABLE dbo.Pedidos (
         REFERENCES dbo.Insumo(id_insumo),
     
     -- Datos del pedido
-    fecha_expiracion  DATE           NOT NULL,
     cantidad          INT            NOT NULL,
-    valor_unitario    DECIMAL(10,2)  NOT NULL,
     fecha_pedido      DATETIME       NOT NULL,
     observacion     NVARCHAR(MAX)  NULL,
 

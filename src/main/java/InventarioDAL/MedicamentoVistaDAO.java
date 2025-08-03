@@ -1,9 +1,11 @@
 package InventarioDAL;
 
+import java.math.BigDecimal;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -62,4 +64,35 @@ public class MedicamentoVistaDAO {
         }
         return lista;
     }
+
+    // En MedicamentoVistaDAO
+public LocalDate obtenerFechaExpiracionMedicamento(int idMedicamento) {
+    String sql = "SELECT fecha_expiracion FROM Medicamento WHERE id_medicamento = ?";
+    try (Connection conn = ConexionBD.conectar();
+         PreparedStatement ps = conn.prepareStatement(sql)) {
+        ps.setInt(1, idMedicamento);
+        ResultSet rs = ps.executeQuery();
+        if (rs.next()) {
+            return rs.getDate("fecha_expiracion").toLocalDate();
+        }
+    } catch (SQLException e) {
+        e.printStackTrace();
+    }
+    return null;
+}
+
+public BigDecimal obtenerValorUnitarioMedicamento(int idMedicamento) {
+    String sql = "SELECT valor_unitario FROM Medicamento WHERE id_medicamento = ?";
+    try (Connection conn = ConexionBD.conectar();
+         PreparedStatement ps = conn.prepareStatement(sql)) {
+        ps.setInt(1, idMedicamento);
+        ResultSet rs = ps.executeQuery();
+        if (rs.next()) {
+            return rs.getBigDecimal("valor_unitario");
+        }
+    } catch (SQLException e) {
+        e.printStackTrace();
+    }
+    return BigDecimal.ZERO;
+}
 }

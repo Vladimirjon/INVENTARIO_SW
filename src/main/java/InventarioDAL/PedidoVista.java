@@ -1,3 +1,4 @@
+//PedidoVista.java
 package InventarioDAL;
 
 import java.math.BigDecimal;
@@ -11,9 +12,7 @@ public class PedidoVista {
     private int        idProveedor;
     private int        idMedicamento;
     private int        idInsumo;
-    private LocalDate  fechaExpiracion;    // <-- cambio aquí
     private int        cantidad;
-    private BigDecimal valorUnitario;
     private LocalDate  fechaPedido;        // <-- aquí también
     private String     observacion;
 
@@ -21,18 +20,14 @@ public class PedidoVista {
                        int idProveedor,
                        int idMedicamento,
                        int idInsumo,
-                       LocalDate fechaExpiracion,
                        int cantidad,
-                       BigDecimal valorUnitario,
                        LocalDate fechaPedido,
                        String observacion) {
         this.idPedido        = idPedido;
         this.idProveedor     = idProveedor;
         this.idMedicamento   = idMedicamento;
         this.idInsumo        = idInsumo;
-        this.fechaExpiracion = fechaExpiracion;
         this.cantidad        = cantidad;
-        this.valorUnitario   = valorUnitario;
         this.fechaPedido     = fechaPedido;
         this.observacion     = observacion;
     }
@@ -50,14 +45,8 @@ public class PedidoVista {
     public int getIdInsumo() { return idInsumo; }
     public void setIdInsumo(int v) { idInsumo = v; }
 
-    public LocalDate getFechaExpiracion() { return fechaExpiracion; }
-    public void setFechaExpiracion(LocalDate d) { fechaExpiracion = d; }
-
     public int getCantidad() { return cantidad; }
     public void setCantidad(int v) { cantidad = v; }
-
-    public BigDecimal getValorUnitario() { return valorUnitario; }
-    public void setValorUnitario(BigDecimal v) { valorUnitario = v; }
 
     public LocalDate getFechaPedido() { return fechaPedido; }
     public void setFechaPedido(LocalDate d) { fechaPedido = d; }
