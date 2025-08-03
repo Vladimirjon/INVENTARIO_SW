@@ -44,4 +44,48 @@ public class EntregasDAO {
 
         return lista;
     }
+
+    public int insertarEntrega(
+        int idInternacion,
+        int idProveedor,
+        Integer idMedicamento,
+        Integer idInsumo,
+        java.time.LocalDate fechaEntregas,
+        int cantidad,
+        String observacion
+) {
+    int newIdEntrega = -1;
+    String sql = "{call sp_InsertarEntrega(?, ?, ?, ?, ?, ?, ?)}";
+    try (Connection conn = ConexionBD.conectar();
+         java.sql.CallableStatement stmt = conn.prepareCall(sql)) {
+
+        //stmt.setInt(1, idInternacion); -- DADO QUE NOSOTROS NO MANEJAMOS EL ID DE INTERNACION
+        stmt.setNull(1, java.sql.Types.INTEGER);
+        stmt.setInt(2, idProveedor);
+
+        if (idMedicamento != null) {
+            stmt.setInt(3, idMedicamento);
+        } else {
+            stmt.setNull(3, java.sql.Types.INTEGER);
+        }
+
+        if (idInsumo != null) {
+            stmt.setInt(4, idInsumo);
+        } else {
+            stmt.setNull(4, java.sql.Types.INTEGER);
+        }
+
+        stmt.setDate(5, java.sql.Date.valueOf(fechaEntregas));
+        stmt.setInt(6, cantidad);
+        stmt.setString(7, observacion);
+
+        ResultSet rs = stmt.executeQuery();
+        if (rs.next()) {
+            newIdEntrega = rs.getInt(1); // O usa rs.getInt("NewIdEntrega") si tu SP lo devuelve con alias
+        }
+    } catch (SQLException e) {
+        e.printStackTrace();
+    }
+    return newIdEntrega;
+}
 }

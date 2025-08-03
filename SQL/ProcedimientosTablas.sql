@@ -61,25 +61,6 @@ END
 GO
 
 
--- Ejemplo de Uso
-
-DECLARE @NuevoEntregaID INT;
-
-EXEC dbo.sp_InsertarEntrega
-    @IdInternacion = 3,
-    @IdProveedor   = 5,
-    @IdMedicamento = 12,
-    @IdInsumo      = 20,
-    @FechaEntregas = GETDATE(),
-    @Cantidad      = 50,
-    @Observacion   = 'Entrega de insumos y medicamentos';
--- Captura el ID generado:
--- SET @NuevoEntregaID = SCOPE_IDENTITY();
-
-
-USE [polisalud];
-GO
-
 -- =============================================
 -- Author:      Johann
 -- Create date: 2025-08-03
@@ -121,3 +102,40 @@ END
 GO
 
 select * from Pedidos
+
+CREATE PROCEDURE dbo.sp_InsertarHistorialEntrega
+    @IdInternacion   INT = NULL,
+    @IdProveedor     INT,
+    @IdMedicamento   INT = NULL,
+    @IdInsumo        INT = NULL,
+    @FechaMovimiento DATETIME,
+    @Cantidad        INT,
+    @Observacion     NVARCHAR(MAX)
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    INSERT INTO dbo.Historial
+    (
+        id_internacion,
+        tipo_movimiento,
+        id_proveedor,
+        id_medicamento,
+        id_insumo,
+        fecha_movimiento,
+        cantidad,
+        observacion
+    )
+    VALUES
+    (
+        @IdInternacion,     -- id_internacion (puede ser NULL)
+        'ENTREGA',          -- tipo_movimiento
+        @IdProveedor,
+        @IdMedicamento,
+        @IdInsumo,
+        @FechaMovimiento,
+        @Cantidad,
+        @Observacion
+    );
+END
+GO

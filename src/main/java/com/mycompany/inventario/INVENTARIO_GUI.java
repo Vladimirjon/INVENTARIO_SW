@@ -169,6 +169,14 @@ colObservacionHist .setCellValueFactory(new PropertyValueFactory<>("observacion"
 @FXML private TableColumn<PedidoVista, String>     colObservacion;
 
 // Tabla Entregas
+@FXML private javafx.scene.control.TextField txtObservacionEntrega;
+@FXML private javafx.scene.control.TextField txtCantidadEntrega;
+
+// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+//@FXML private ChoiceBox<InternacionVista> choiceInternacion; // Cambia el tipo según tabla de Internacion
+
+@FXML private ChoiceBox<ProveedorVista> choiceProveedorEntregas; // Cambia el tipo según tu modelo
+@FXML private ChoiceBox<MedicamentoInsumoVista> choiceMedicamentoInsumoEntregas;      // Cambia el tipo según tu modelo
 @FXML private TableView<EntregasVista> tblEntregas;
 @FXML private TableColumn<EntregasVista, Integer> colIdEntregas;
 @FXML private TableColumn<EntregasVista, Integer> colIdInternacion;
@@ -268,15 +276,34 @@ if (isHistorial) {
 
 
 if (isEntregas) {
-    // 1) Llama al servicio
+    // 1) Llama al servicio para cargar la tabla
     EntregaService svc = new EntregaService();
     List<EntregasVista> lista = svc.obtenerTodasLasEntregas();
-
-    // 2) Convierte a ObservableList
     ObservableList<EntregasVista> data = FXCollections.observableArrayList(lista);
-
-    // 3) Asigna al TableView
     tblEntregas.setItems(data);
+
+    // 2) Llenar ChoiceBox de proveedores
+    ProveedorVistaService proveedorService = new ProveedorVistaService();
+    List<ProveedorVista> proveedores = proveedorService.obtenerTodosLosProveedores();
+    ObservableList<ProveedorVista> obsProveedores = FXCollections.observableArrayList(proveedores);
+    choiceProveedorEntregas.setItems(obsProveedores);
+
+    // 3) Llenar ChoiceBox de medicamentos/insumos según proveedor seleccionado
+    choiceProveedorEntregas.getSelectionModel().selectedItemProperty().addListener((observable, oldVal, newVal) -> {
+        if (newVal != null) {
+            int idProveedor = newVal.getIdProveedor();
+            MedicamentoInsumoService service = new MedicamentoInsumoService();
+            List<MedicamentoInsumoVista> medInsumoList = service.obtenerMedicamentosEInsumosPorProveedor(idProveedor);
+            ObservableList<MedicamentoInsumoVista> obsLista = FXCollections.observableArrayList(medInsumoList);
+            choiceMedicamentoInsumoEntregas.setItems(obsLista);
+        } else {
+            choiceMedicamentoInsumoEntregas.getItems().clear();
+        }
+    });
+
+    // 4) Internación: puedes dejar el campo deshabilitado y prellenado con "0"
+    //txtInternacion.setText("0");
+    //txtInternacion.setDisable(true);
 }
 
     
@@ -303,6 +330,12 @@ if (isEntregas) {
         // Platform.exit();
     }
     
+private void cargarHistorial() {
+    HistorialService historialService = new HistorialService();
+    List<HistorialMovimientoVista> historial = historialService.obtenerTodosLosMovimientos();
+    ObservableList<HistorialMovimientoVista> obsHistorial = FXCollections.observableArrayList(historial);
+    tblHistorial.setItems(obsHistorial);
+}
 
 private void cargarPedidos() {
     PedidoService pedidoService = new PedidoService();
@@ -355,6 +388,7 @@ private void handleAñadirPedido(ActionEvent event) {
         new javafx.scene.control.Alert(javafx.scene.control.Alert.AlertType.INFORMATION, 
             "Pedido registrado correctamente. ID generado: " + newId).showAndWait();
         cargarPedidos();
+        cargarHistorial();
         choiceMedicamentoInsumo.setValue(null);
         txtCantidadPedido.clear();
         txtObservacionPedido.clear();
@@ -364,10 +398,68 @@ private void handleAñadirPedido(ActionEvent event) {
     }
 }
 
+private void cargarEntregas() {
+    EntregaService entregaService = new EntregaService();
+    List<EntregasVista> entregas = entregaService.obtenerTodasLasEntregas();
+    ObservableList<EntregasVista> obsEntregas = FXCollections.observableArrayList(entregas);
+    tblEntregas.setItems(obsEntregas);
+}
+
 @FXML
 private void handleAñadirEntrega(ActionEvent event) {
-    // Por ahora, puedes dejarlo vacío o con un print para probar
     System.out.println("Añadir entrega presionado");
+
+    ProveedorVista proveedor = choiceProveedor.getValue();
+    MedicamentoInsumoVista medIns = choiceMedicamentoInsumo.getValue();
+    String cantidadStr = txtCantidadEntrega.getText();
+    String observacion = txtObservacionEntrega.getText();
+
+    // Validación
+    if (proveedor == null || medIns == null || cantidadStr.isEmpty()) {
+        new javafx.scene.control.Alert(javafx.scene.control.Alert.AlertType.WARNING,
+            "Debes seleccionar un proveedor, un medicamento/insumo y una cantidad.").showAndWait();
+        return;
+    }
+
+    int cantidad;
+    try {
+        cantidad = Integer.parseInt(cantidadStr);
+        if (cantidad <= 0) throw new NumberFormatException();
+    } catch (NumberFormatException e) {
+        new javafx.scene.control.Alert(javafx.scene.control.Alert.AlertType.WARNING,
+            "La cantidad debe ser un número entero positivo.").showAndWait();
+        return;
+    }
+
+    // Internación siempre 0
+    int idInternacion = 0;
+    Integer idMedicamento = medIns.getTipo().equals("MEDICAMENTO") ? medIns.getId() : null;
+    Integer idInsumo = medIns.getTipo().equals("INSUMO") ? medIns.getId() : null;
+
+    EntregasDAO entregaDAO = new EntregasDAO();
+    int newId = entregaDAO.insertarEntrega(
+        idInternacion,
+        proveedor.getIdProveedor(),
+        idMedicamento,
+        idInsumo,
+        LocalDate.now(),
+        cantidad,
+        observacion
+    );
+
+    if (newId != -1) {
+        new javafx.scene.control.Alert(javafx.scene.control.Alert.AlertType.INFORMATION,
+            "Entrega registrada correctamente. ID generado: " + newId).showAndWait();
+        cargarEntregas();
+        cargarHistorial();
+        choiceProveedor.setValue(null);
+        choiceMedicamentoInsumo.setValue(null);
+        txtCantidadEntrega.clear();
+        txtObservacionEntrega.clear();
+    } else {
+        new javafx.scene.control.Alert(javafx.scene.control.Alert.AlertType.ERROR,
+            "Error al registrar la entrega.").showAndWait();
+    }
 }
 
 }
