@@ -16,7 +16,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="476.0" prefWidth="879.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.inventario.INVENTARIO_GUI">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="624.0" prefWidth="869.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.inventario.INVENTARIO_GUI">
    <top>
       <HBox prefHeight="72.0" prefWidth="650.0" spacing="20.0" style="-fx-background-color: #A3C7E4; -fx-padding: 10;" BorderPane.alignment="CENTER_LEFT">
          <children>
@@ -34,7 +34,7 @@
       </HBox>
    </top>
    <center>
-      <TabPane fx:id="tabPane" prefHeight="299.0" prefWidth="600.0" style="-fx-background-color: #F0F8FF; -fx-border-color: #A3C7E4; -fx-border-width: 1;" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
+      <TabPane fx:id="tabPane" prefHeight="434.0" prefWidth="879.0" style="-fx-background-color: #F0F8FF; -fx-border-color: #A3C7E4; -fx-border-width: 1;" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
         <tabs>
           <Tab fx:id="tabMedicamentos" text="BODEGA">
             <content>
@@ -86,9 +86,9 @@
                            <center>
                               <TableView fx:id="tblProveedor" prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #A3C7E4; -fx-border-width: 1;" BorderPane.alignment="CENTER">
                                 <columns>
-                                    <TableColumn fx:id="colcodProveedor" prefWidth="109.59993767738342" text="id_proveedor" />
-                                  <TableColumn fx:id="colNombreProveedor" prefWidth="92.79999542236328" text="RUC" />
-                                    <TableColumn fx:id="colRUC" prefWidth="186.40005493164062" text="Nombre_Proveedor" />
+                                    <TableColumn fx:id="colcodProveedor" prefWidth="91.20000338554382" text="id_proveedor" />
+                                  <TableColumn fx:id="colNombreProveedor" prefWidth="272.0000457763672" text="Nombre_Proveedor" />
+                                    <TableColumn fx:id="colRUC" prefWidth="140.79998779296875" text="RUC" />
                                   
                                 </columns>
                               </TableView>
@@ -103,32 +103,59 @@
                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
                         <BorderPane prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
-                           <top>
+                           <center>
                               <AnchorPane prefHeight="326.0" prefWidth="866.0" BorderPane.alignment="CENTER">
                                  <children>
-                                    <ChoiceBox fx:id="choiceProveedor" layoutX="282.0" layoutY="11.0" prefWidth="150.0" />
-                                    <ChoiceBox fx:id="choiceMedicamentoInsumo" layoutX="282.0" layoutY="49.0" prefWidth="150.0" />
-                                    <Label layoutX="185.0" layoutY="8.0" prefHeight="32.0" prefWidth="70.0" text="PROVEEDOR" />
-                                    <Label layoutX="116.0" layoutY="51.0" prefHeight="22.0" prefWidth="137.0" text="MEDICAMENTO/INSUMO" />
-                                    <Label layoutX="171.0" layoutY="89.0" prefHeight="23.0" prefWidth="82.0" text="OBSERVACIÓN" />
-                                    <TableView fx:id="tblPedidos" layoutX="24.0" layoutY="163.0" prefHeight="160.0" prefWidth="819.0">
+                                    <ChoiceBox fx:id="choiceProveedor" layoutX="207.0" layoutY="11.0" prefWidth="150.0" />
+                                    <ChoiceBox fx:id="choiceMedicamentoInsumo" layoutX="207.0" layoutY="50.0" prefWidth="150.0" />
+                                    <Label layoutX="116.0" layoutY="8.0" prefHeight="32.0" prefWidth="70.0" text="PROVEEDOR" />
+                                    <Label layoutX="47.0" layoutY="52.0" prefHeight="22.0" prefWidth="137.0" text="MEDICAMENTO/INSUMO" />
+                                    <Label layoutX="397.0" layoutY="51.0" prefHeight="23.0" prefWidth="82.0" text="OBSERVACIÓN" />
+                                    <TableView fx:id="tblPedidos" layoutX="24.0" layoutY="151.0" prefHeight="160.0" prefWidth="819.0">
                                       <columns>
-                                          <TableColumn fx:id="colIdPedido" prefWidth="72.7999267578125" text="Id_Pedido" />
-                                        <TableColumn fx:id="colIdProveedorPedido" prefWidth="75.0" text="Proveedor" />
-                                          <TableColumn fx:id="colIdMedicamentoPedido" prefWidth="136.00003051757812" text="Medicamento" />
-                                          <TableColumn fx:id="colIdInsumoPedido" prefWidth="136.00003051757812" text="Insumo" />
-                                          <TableColumn fx:id="colCantidadPedido" prefWidth="56.00006103515625" text="Cantidad" />
-                                          <TableColumn fx:id="colFechaPedido" prefWidth="108.79998779296875" text="Fecha Pedido" />
-                                          <TableColumn fx:id="colObservacion" prefWidth="86.39990234375" text="Observación" />
+                                          <TableColumn fx:id="colIdPedido" prefWidth="65.59999465942383" text="Id_Pedido" />
+                                          <TableColumn fx:id="colIdPedido1" prefWidth="89.5999755859375" text="Id_Internación" />
+                                        <TableColumn fx:id="colIdProveedorPedido" prefWidth="187.1999969482422" text="Proveedor" />
+                                          <TableColumn fx:id="colIdMedicamentoPedido" prefWidth="84.0" text="Medicamento" />
+                                          <TableColumn fx:id="colIdInsumoPedido" prefWidth="57.5999755859375" text="Insumo" />
+                                          <TableColumn fx:id="colCantidadPedido" prefWidth="64.0" text="Cantidad" />
+                                          <TableColumn fx:id="colFechaPedido" prefWidth="102.39996337890625" text="Fecha" />
+                                          <TableColumn fx:id="colObservacion" prefWidth="168.0" text="Observación" />
                                       </columns>
                                     </TableView>
-                                    <Button fx:id="btnAñadirPedido" layoutX="291.0" layoutY="126.0" mnemonicParsing="false" onAction="#handleAñadirPedido" prefHeight="30.0" prefWidth="131.0" text="AÑADIR" />
-                                    <TextField fx:id="txtObservacionPedido" layoutX="282.0" layoutY="83.0" prefHeight="36.0" prefWidth="322.0" />
-                                    <Label layoutX="512.0" layoutY="16.0" text="CANTIDAD" />
-                                    <TextField fx:id="txtCantidadPedido" layoutX="604.0" layoutY="12.0" />
+                                    <Button fx:id="btnAñadirPedido" layoutX="711.0" layoutY="9.0" mnemonicParsing="false" onAction="#handleAñadirPedido" prefHeight="30.0" prefWidth="131.0" text="AÑADIR" />
+                                    <TextField fx:id="txtObservacionPedido" layoutX="501.0" layoutY="56.0" prefHeight="65.0" prefWidth="190.0" />
+                                    <Label layoutX="422.0" layoutY="16.0" text="CANTIDAD" />
+                                    <TextField fx:id="txtCantidadPedido" layoutX="499.0" layoutY="11.0" prefHeight="26.0" prefWidth="192.0" />
+                                    <ChoiceBox fx:id="choiceInternacionPedido" layoutX="207.0" layoutY="84.0" prefWidth="150.0" />
+                                    <Label layoutX="107.0" layoutY="84.0" text="INTERNACIÓN" />
+                                    <Button layoutX="711.0" layoutY="73.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="130.0" text="FILTRAR PEDIDO" />
+                                    <TableView fx:id="tblPedidos1" layoutX="24.0" layoutY="345.0" prefHeight="160.0" prefWidth="819.0">
+                                       <columns>
+                                          <TableColumn fx:id="colIdPedido1" prefWidth="65.59999465942383" text="Id_Pedido" />
+                                          <TableColumn fx:id="colIdPedido11" prefWidth="89.5999755859375" text="Id_Internación" />
+                                          <TableColumn fx:id="colIdProveedorPedido1" prefWidth="187.1999969482422" text="Proveedor" />
+                                          <TableColumn fx:id="colIdMedicamentoPedido1" prefWidth="84.0" text="Medicamento" />
+                                          <TableColumn fx:id="colIdInsumoPedido1" prefWidth="57.5999755859375" text="Insumo" />
+                                          <TableColumn fx:id="colCantidadPedido1" prefWidth="64.0" text="Cantidad" />
+                                          <TableColumn fx:id="colFechaPedido1" prefWidth="102.39996337890625" text="Fecha" />
+                                          <TableColumn fx:id="colObservacion1" prefWidth="167.9999877929688" text="Observación" />
+                                       </columns>
+                                    </TableView>
+                                    <Button layoutX="711.0" layoutY="41.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="131.0" text="GUARDAR PEDIDO" />
+                                    <Label layoutX="355.0" layoutY="133.0" text="PEDIDOS ENTREGADOS">
+                                       <font>
+                                          <Font name="System Bold" size="12.0" />
+                                       </font>
+                                    </Label>
+                                    <Label layoutX="361.0" layoutY="327.0" text="PEDIDO EN PROCESO">
+                                       <font>
+                                          <Font name="System Bold" size="12.0" />
+                                       </font>
+                                    </Label>
                                  </children>
                               </AnchorPane>
-                           </top>
+                           </center>
                         </BorderPane>
                      </children>
                   </AnchorPane>
@@ -136,35 +163,61 @@
             </Tab>
             <Tab fx:id="tabEntregas" text="ENTREGAS">
                <content>
-                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="514.0" prefWidth="1057.0">
                      <children>
                         <BorderPane prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
                            <top>
-                              <AnchorPane prefHeight="391.0" prefWidth="868.0" BorderPane.alignment="CENTER">
+                              <AnchorPane prefHeight="494.0" prefWidth="933.0" BorderPane.alignment="CENTER">
                                  <children>
-                                    <ChoiceBox fx:id="choiceProveedorEntregas" layoutX="282.0" layoutY="11.0" prefWidth="150.0" />
-                                    <ChoiceBox fx:id="choiceInternacion" layoutX="282.0" layoutY="49.0" prefWidth="150.0" />
-                                    <ChoiceBox fx:id="choiceMedicamentoInsumoEntregas" layoutX="282.0" layoutY="83.0" prefWidth="150.0" />
-                                    <Label layoutX="186.0" layoutY="9.0" prefHeight="32.0" prefWidth="70.0" text="PROVEEDOR" />
-                                    <Label layoutX="176.0" layoutY="50.0" prefHeight="23.0" prefWidth="78.0" text="INTERNACIÓN" />
-                                    <Label layoutX="117.0" layoutY="84.0" prefHeight="23.0" prefWidth="137.0" text="MEDICAMENTO/INSUMO" />
-                                    <Label layoutX="500.0" layoutY="50.0" prefHeight="23.0" prefWidth="81.0" text="OBSERVACIÓN" />
-                                    <TableView fx:id="tblEntregas" layoutX="47.0" layoutY="166.0" prefHeight="160.0" prefWidth="794.0">
+                                    <ChoiceBox fx:id="choiceProveedorEntregas" layoutX="206.0" layoutY="13.0" prefWidth="150.0" />
+                                    <ChoiceBox fx:id="choiceInternacion" layoutX="205.0" layoutY="49.0" prefWidth="150.0" />
+                                    <ChoiceBox fx:id="choiceMedicamentoInsumoEntregas" layoutX="206.0" layoutY="83.0" prefWidth="150.0" />
+                                    <Label layoutX="116.0" layoutY="10.0" prefHeight="32.0" prefWidth="70.0" text="PROVEEDOR" />
+                                    <Label layoutX="106.0" layoutY="50.0" prefHeight="23.0" prefWidth="78.0" text="INTERNACIÓN" />
+                                    <Label layoutX="47.0" layoutY="84.0" prefHeight="23.0" prefWidth="137.0" text="MEDICAMENTO/INSUMO" />
+                                    <Label layoutX="394.0" layoutY="50.0" prefHeight="23.0" prefWidth="81.0" text="OBSERVACIÓN" />
+                                    <TableView fx:id="tblEntregas" layoutX="35.0" layoutY="141.0" prefHeight="160.0" prefWidth="799.0">
                                        <columns>
                                           <TableColumn fx:id="colIdEntregas" prefWidth="75.0" text="Id_Entregas" />
-                                          <TableColumn fx:id="colIdInternacion" prefWidth="91.20001220703125" text="Id_Internación" />
-                                          <TableColumn fx:id="colIdProveedorEnt" prefWidth="79.20001220703125" text="Proveedor" />
-                                          <TableColumn fx:id="colIdMedicamentoEnt" prefWidth="150.4000244140625" text="Medicamento" />
-                                          <TableColumn fx:id="colIdInsumoEnt" prefWidth="150.4000244140625" text="Insumo" />
-                                          <TableColumn fx:id="colFechaEntregas" prefWidth="85.5999755859375" text="Entrega" />
-                                          <TableColumn fx:id="colCantidadEnt" prefWidth="73.60003662109375" text="Cantidad" />
-                                          <TableColumn fx:id="colObservacionEnt" prefWidth="85.5999755859375" text="Observación" />
+                                          <TableColumn fx:id="colIdInternacion2" prefWidth="64.0" text="Id_Pedido" />
+                                          <TableColumn fx:id="colIdInternacion" prefWidth="87.20001220703125" text="Id_Internación" />
+                                          <TableColumn fx:id="colIdProveedorEnt" prefWidth="178.39996337890625" text="Proveedor" />
+                                          <TableColumn fx:id="colIdMedicamentoEnt" prefWidth="82.4000244140625" text="Medicamento" />
+                                          <TableColumn fx:id="colIdInsumoEnt" prefWidth="49.60003662109375" text="Insumo" />
+                                          <TableColumn fx:id="colFechaEntregas" prefWidth="81.5999755859375" text="Fecha" />
+                                          <TableColumn fx:id="colCantidadEnt" prefWidth="61.60003662109375" text="Cantidad" />
+                                          <TableColumn fx:id="colObservacionEnt" prefWidth="121.5999755859375" text="Observación" />
                                        </columns>
                                     </TableView>
-                                    <Button fx:id="btnAñadirEntrega" layoutX="282.0" layoutY="116.0" mnemonicParsing="false" onAction="#handleAñadirEntrega" prefHeight="30.0" prefWidth="131.0" text="AÑADIR" />
-                                    <TextField fx:id="txtObservacionEntrega" layoutX="597.0" layoutY="47.0" prefHeight="79.0" prefWidth="186.0" />
-                                    <TextField fx:id="txtCantidadEntrega" layoutX="597.0" layoutY="13.0" prefHeight="26.0" prefWidth="186.0" />
-                                    <Label layoutX="522.0" layoutY="17.0" prefHeight="18.0" prefWidth="59.0" text="CANTIDAD" />
+                                    <Button fx:id="btnAñadirEntrega" layoutX="717.0" layoutY="11.0" mnemonicParsing="false" onAction="#handleAñadirEntrega" prefHeight="30.0" prefWidth="131.0" text="AÑADIR" />
+                                    <TextField fx:id="txtObservacionEntrega" layoutX="497.0" layoutY="43.0" prefHeight="64.0" prefWidth="186.0" />
+                                    <TextField fx:id="txtCantidadEntrega" layoutX="497.0" layoutY="13.0" prefHeight="26.0" prefWidth="186.0" />
+                                    <Label layoutX="414.0" layoutY="16.0" prefHeight="18.0" prefWidth="59.0" text="CANTIDAD" />
+                                    <Label layoutX="370.0" layoutY="122.0" text="ENTREGAS REALIZADAS" textAlignment="CENTER">
+                                       <font>
+                                          <Font name="System Bold" size="13.0" />
+                                       </font>
+                                    </Label>
+                                    <Label layoutX="373.0" layoutY="314.0" text="ENTREGA EN PROCESO" textAlignment="CENTER">
+                                       <font>
+                                          <Font name="System Bold" size="13.0" />
+                                       </font>
+                                    </Label>
+                                    <Button layoutX="717.0" layoutY="46.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="129.0" text="GUARDAR ENTREGA" />
+                                    <TableView fx:id="tblEntregas1" layoutX="35.0" layoutY="334.0" prefHeight="160.0" prefWidth="799.0">
+                                       <columns>
+                                          <TableColumn fx:id="colIdEntregas1" prefWidth="75.0" text="Id_Entregas" />
+                                          <TableColumn fx:id="colIdInternacion21" prefWidth="64.0" text="Id_Pedido" />
+                                          <TableColumn fx:id="colIdInternacion1" prefWidth="87.20001220703125" text="Id_Internación" />
+                                          <TableColumn fx:id="colIdProveedorEnt1" prefWidth="178.39996337890625" text="Proveedor" />
+                                          <TableColumn fx:id="colIdMedicamentoEnt1" prefWidth="82.4000244140625" text="Medicamento" />
+                                          <TableColumn fx:id="colIdInsumoEnt1" prefWidth="49.60003662109375" text="Insumo" />
+                                          <TableColumn fx:id="colFechaEntregas1" prefWidth="81.5999755859375" text="Fecha" />
+                                          <TableColumn fx:id="colCantidadEnt1" prefWidth="61.60003662109375" text="Cantidad" />
+                                          <TableColumn fx:id="colObservacionEnt1" prefWidth="121.5999755859375" text="Observación" />
+                                       </columns>
+                                    </TableView>
+                                    <Button layoutX="718.0" layoutY="80.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="126.0" text="FITRAR ENTREGA" />
                                  </children>
                               </AnchorPane>
                            </top>

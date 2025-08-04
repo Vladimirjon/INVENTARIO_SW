@@ -353,12 +353,6 @@ private void handleAñadirPedido(ActionEvent event) {
     String cantidadStr = txtCantidadPedido.getText();
     String observacion = txtObservacionPedido.getText();
 
-    // Validación
-    if (proveedor == null || medIns == null || cantidadStr.isEmpty()) {
-        new javafx.scene.control.Alert(javafx.scene.control.Alert.AlertType.WARNING, 
-            "Debes seleccionar un proveedor, un medicamento/insumo y una cantidad.").showAndWait();
-        return;
-    }
 
     int cantidad;
     try {
@@ -407,16 +401,14 @@ private void cargarEntregas() {
 
 @FXML
 private void handleAñadirEntrega(ActionEvent event) {
-    System.out.println("Añadir entrega presionado");
-
-    ProveedorVista proveedor = choiceProveedor.getValue();
-    MedicamentoInsumoVista medIns = choiceMedicamentoInsumo.getValue();
+    ProveedorVista proveedor = choiceProveedorEntregas.getValue();
+    MedicamentoInsumoVista medIns = choiceMedicamentoInsumoEntregas.getValue();
     String cantidadStr = txtCantidadEntrega.getText();
     String observacion = txtObservacionEntrega.getText();
 
     // Validación
     if (proveedor == null || medIns == null || cantidadStr.isEmpty()) {
-        new javafx.scene.control.Alert(javafx.scene.control.Alert.AlertType.WARNING,
+        new javafx.scene.control.Alert(javafx.scene.control.Alert.AlertType.WARNING, 
             "Debes seleccionar un proveedor, un medicamento/insumo y una cantidad.").showAndWait();
         return;
     }
