@@ -75,42 +75,44 @@ SELECT * FROM dbo.Insumo;
 
 
 
--- Insertar 4 pedidos (2 de medicamentos, 2 de insumos)
 INSERT INTO dbo.Pedidos
-  (id_proveedor, id_medicamento, id_insumo, cantidad, fecha_pedido, observacion)
+  (id_pedido, id_internacion, id_proveedor, id_medicamento, id_insumo, cantidad, fecha_pedido, observacion)
 VALUES
   -- Pedido de medicamento: Ritonavir (id_medicamento = 1, id_proveedor = 1)
-  (1, 1, NULL,  20, '2025-07-25 08:00:00', 'Pedido de Norvir 100 mg'),
+  (1, NULL, 1, 1, NULL,  20, '2025-07-25 08:00:00', 'Pedido de Norvir 100 mg'),
 
   -- Pedido de medicamento: Paracetamol (id_medicamento = 4, id_proveedor = 2)
-  (2, 4, NULL,  50,  '2025-07-26 10:00:00', 'Pedido de jarabe Paracetamol'),
+  (2, NULL, 2, 4, NULL,  50,  '2025-07-26 10:00:00', 'Pedido de jarabe Paracetamol'),
+
   -- Pedido de insumo: Control patológico (id_insumo = 1, id_proveedor = 1)
-  (1, NULL, 1,      30,  '2025-07-27 09:30:00', 'Pedido de control anormal química clínica'),
+  (3, NULL, 1, NULL, 1,  30,  '2025-07-27 09:30:00', 'Pedido de control anormal química clínica'),
 
   -- Pedido de insumo: Medio Salmonella/Shigella SS (id_insumo = 6, id_proveedor = 6)
-  (6, NULL, 6,      100,  '2025-07-28 11:15:00', 'Pedido de medio SS para microbiología');
+  (4, NULL, 6, NULL, 6,  100,  '2025-07-28 11:15:00', 'Pedido de medio SS para microbiología');
 GO
 
+-- Verificar los datos insertados
 SELECT * FROM dbo.Pedidos;
 
 select * from entregas
 
 -- Insertar 4 entregas (2 de medicamentos, 2 de insumos)
 INSERT INTO dbo.Entregas
-  (id_internacion, id_proveedor, id_medicamento, id_insumo, fecha_entregas, cantidad, observacion)
+  (id_pedido, id_internacion, id_proveedor, id_medicamento, id_insumo, fecha_entregas, cantidad, observacion)
 VALUES
   -- Entrega de medicamento: Norvir (id_medicamento = 1, id_proveedor = 1)
-  (NULL, 1, 1, NULL, '2025-07-26 08:30:00',  20, 'Entrega de Norvir 100 mg'),
+  (NULL, NULL, 1, 1, NULL, '2025-07-26 08:30:00',  20, 'Entrega de Norvir 100 mg'),
   
   -- Entrega de medicamento: Paracetamol (id_medicamento = 4, id_proveedor = 2)
-  (NULL, 2, 4, NULL, '2025-07-27 09:45:00',  50, 'Entrega de jarabe Paracetamol'),
+  (NULL, NULL, 2, 4, NULL, '2025-07-27 09:45:00',  50, 'Entrega de jarabe Paracetamol'),
   
   -- Entrega de insumo: Control patológico (id_insumo = 1, id_proveedor = 1)
-  (NULL, 1, NULL, 1,      '2025-07-28 11:20:00',  30, 'Entrega de control patológico'),
+  (NULL, NULL, 1, NULL, 1, '2025-07-28 11:20:00',  30, 'Entrega de control patológico'),
   
   -- Entrega de insumo: Medio Salmonella/Shigella SS (id_insumo = 6, id_proveedor = 6)
-  (NULL, 6, NULL, 6,      '2025-07-29 14:00:00', 100, 'Entrega de medio SS para microbiología');
+  (NULL, NULL, 6, NULL, 6, '2025-07-29 14:00:00', 100, 'Entrega de medio SS para microbiología');
 GO
+select * from entregas 
 
 SELECT * FROM dbo.Entregas;
 

@@ -42,9 +42,20 @@ GO
 /***************************************
  * 3) Movimientos: Pedidos (compras)
  ***************************************/
-
+-- Crear la nueva tabla Pedidos
 CREATE TABLE dbo.Pedidos (
-    id_pedido         INT            IDENTITY(1,1) PRIMARY KEY,
+    id_pedido         INT            NOT NULL PRIMARY KEY,  -- Sin IDENTITY
+
+    -- Foreign key a internacion (permite duplicados)
+    id_internacion    INT            NULL
+        CONSTRAINT FK_Id_Internacion 
+        REFERENCES [dbo].[Internación](id_internacion),
+
+    -- Asegura que solo uno de los dos (medicamento o insumo) esté presente
+    CONSTRAINT CHK_Pedidos_Item CHECK (
+        (id_medicamento IS NOT NULL AND id_insumo IS NULL)
+     OR (id_medicamento IS NULL    AND id_insumo IS NOT NULL)
+    ),
     
     -- A quién le pides
     id_proveedor      INT            NOT NULL
@@ -62,13 +73,8 @@ CREATE TABLE dbo.Pedidos (
     -- Datos del pedido
     cantidad          INT            NOT NULL,
     fecha_pedido      DATETIME       NOT NULL,
-    observacion     NVARCHAR(MAX)  NULL,
-
-    -- Asegura que solo uno de los dos (medicamento o insumo) esté presente
-    CONSTRAINT CHK_Pedidos_Item CHECK (
-        (id_medicamento IS NOT NULL AND id_insumo IS NULL)
-     OR (id_medicamento IS NULL    AND id_insumo IS NOT NULL)
-    )
+    observacion       NVARCHAR(MAX)  NULL,    
+    
 );
 GO
 
@@ -76,25 +82,41 @@ GO
  * 4) Movimientos: Entregas (egresos)
  ***************************************/
 
+-- Crear la nueva tabla Entregas
 CREATE TABLE dbo.Entregas (
     id_entregas       INT            IDENTITY(1,1) PRIMARY KEY,
+
+    id_pedido         INT            NULL
+        CONSTRAINT FK_Entregas_Pedido
+        REFERENCES dbo.Pedidos(id_pedido),
+
     id_internacion    INT            NULL
-    CONSTRAINT FK_Entregas_Internacion REFERENCES dbo.[Internación](id_internacion),
+        CONSTRAINT FK_Entregas_Internacion 
+        REFERENCES [dbo].[Internación](id_internacion),
+
     id_proveedor      INT            NOT NULL
-        CONSTRAINT FK_Entregas_Proveedor REFERENCES dbo.proveedor(id_proveedor),
+        CONSTRAINT FK_Entregas_Proveedor 
+        REFERENCES dbo.proveedor(id_proveedor),
+
     id_medicamento    INT            NULL
-        CONSTRAINT FK_Entregas_Medicamento REFERENCES dbo.medicamento(id_medicamento),
+        CONSTRAINT FK_Entregas_Medicamento 
+        REFERENCES dbo.medicamento(id_medicamento),
+
     id_insumo         INT            NULL
-        CONSTRAINT FK_Entregas_Insumo REFERENCES dbo.Insumo(id_insumo),
+        CONSTRAINT FK_Entregas_Insumo 
+        REFERENCES dbo.Insumo(id_insumo),
+
     fecha_entregas    DATETIME       NOT NULL,
     cantidad          INT            NOT NULL,
-    observacion     NVARCHAR(MAX)  NULL,
+    observacion       NVARCHAR(MAX)  NULL,
+
     CONSTRAINT CHK_Entregas_Item CHECK (
         (id_medicamento IS NOT NULL AND id_insumo IS NULL)
-     OR (id_medicamento IS NULL AND id_insumo IS NOT NULL)
+     OR (id_medicamento IS NULL    AND id_insumo IS NOT NULL)
     )
 );
 GO
+
 
 /***************************************
  * 5) Historial de todos los movimientos

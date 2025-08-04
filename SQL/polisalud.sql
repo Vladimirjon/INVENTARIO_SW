@@ -1,6 +1,6 @@
-USE [master]
+USE [polisalud]
 GO
-/****** Object:  Database [polisalud]    Script Date: 3/8/2025 17:30:19 ******/
+/****** Object:  Database [polisalud]    Script Date: 4/8/2025 18:43:07 ******/
 CREATE DATABASE [polisalud]
  CONTAINMENT = NONE
  ON  PRIMARY 
@@ -82,12 +82,12 @@ ALTER DATABASE [polisalud] SET QUERY_STORE = OFF
 GO
 USE [polisalud]
 GO
-/****** Object:  User [JORGE]    Script Date: 3/8/2025 17:30:19 ******/
+/****** Object:  User [JORGE]    Script Date: 4/8/2025 18:43:07 ******/
 CREATE USER [JORGE] FOR LOGIN [JORGE] WITH DEFAULT_SCHEMA=[dbo]
 GO
 ALTER ROLE [db_owner] ADD MEMBER [JORGE]
 GO
-/****** Object:  Table [dbo].[AlaDelHospital]    Script Date: 3/8/2025 17:30:19 ******/
+/****** Object:  Table [dbo].[AlaDelHospital]    Script Date: 4/8/2025 18:43:07 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -102,7 +102,7 @@ CREATE TABLE [dbo].[AlaDelHospital](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Anamnesis]    Script Date: 3/8/2025 17:30:19 ******/
+/****** Object:  Table [dbo].[Anamnesis]    Script Date: 4/8/2025 18:43:07 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -119,7 +119,7 @@ CREATE TABLE [dbo].[Anamnesis](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Antecedentes]    Script Date: 3/8/2025 17:30:19 ******/
+/****** Object:  Table [dbo].[Antecedentes]    Script Date: 4/8/2025 18:43:07 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -136,7 +136,7 @@ CREATE TABLE [dbo].[Antecedentes](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Aplicar]    Script Date: 3/8/2025 17:30:19 ******/
+/****** Object:  Table [dbo].[Aplicar]    Script Date: 4/8/2025 18:43:07 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -151,7 +151,7 @@ CREATE TABLE [dbo].[Aplicar](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[calendarioDeAtencion]    Script Date: 3/8/2025 17:30:19 ******/
+/****** Object:  Table [dbo].[calendarioDeAtencion]    Script Date: 4/8/2025 18:43:07 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -168,7 +168,7 @@ CREATE TABLE [dbo].[calendarioDeAtencion](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Cita]    Script Date: 3/8/2025 17:30:19 ******/
+/****** Object:  Table [dbo].[Cita]    Script Date: 4/8/2025 18:43:07 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -196,7 +196,7 @@ CREATE TABLE [dbo].[Cita](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[ConsultaExterna]    Script Date: 3/8/2025 17:30:19 ******/
+/****** Object:  Table [dbo].[ConsultaExterna]    Script Date: 4/8/2025 18:43:07 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -212,7 +212,7 @@ CREATE TABLE [dbo].[ConsultaExterna](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Contacto]    Script Date: 3/8/2025 17:30:19 ******/
+/****** Object:  Table [dbo].[Contacto]    Script Date: 4/8/2025 18:43:07 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -228,7 +228,7 @@ CREATE TABLE [dbo].[Contacto](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Diagnóstico]    Script Date: 3/8/2025 17:30:19 ******/
+/****** Object:  Table [dbo].[Diagnóstico]    Script Date: 4/8/2025 18:43:07 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -243,7 +243,7 @@ CREATE TABLE [dbo].[Diagnóstico](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Doctor]    Script Date: 3/8/2025 17:30:19 ******/
+/****** Object:  Table [dbo].[Doctor]    Script Date: 4/8/2025 18:43:07 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -269,7 +269,7 @@ CREATE TABLE [dbo].[Doctor](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Enfermero]    Script Date: 3/8/2025 17:30:19 ******/
+/****** Object:  Table [dbo].[Enfermero]    Script Date: 4/8/2025 18:43:07 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -290,13 +290,14 @@ CREATE TABLE [dbo].[Enfermero](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Entregas]    Script Date: 3/8/2025 17:30:19 ******/
+/****** Object:  Table [dbo].[Entregas]    Script Date: 4/8/2025 18:43:07 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
 CREATE TABLE [dbo].[Entregas](
 	[id_entregas] [int] IDENTITY(1,1) NOT NULL,
+	[id_pedido] [int] NULL,
 	[id_internacion] [int] NULL,
 	[id_proveedor] [int] NOT NULL,
 	[id_medicamento] [int] NULL,
@@ -310,7 +311,7 @@ PRIMARY KEY CLUSTERED
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Evaluar]    Script Date: 3/8/2025 17:30:19 ******/
+/****** Object:  Table [dbo].[Evaluar]    Script Date: 4/8/2025 18:43:07 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -327,7 +328,7 @@ CREATE TABLE [dbo].[Evaluar](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Evolucion]    Script Date: 3/8/2025 17:30:19 ******/
+/****** Object:  Table [dbo].[Evolucion]    Script Date: 4/8/2025 18:43:07 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -342,7 +343,7 @@ CREATE TABLE [dbo].[Evolucion](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Examen]    Script Date: 3/8/2025 17:30:19 ******/
+/****** Object:  Table [dbo].[Examen]    Script Date: 4/8/2025 18:43:07 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -358,7 +359,7 @@ CREATE TABLE [dbo].[Examen](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[ExamenImagen]    Script Date: 3/8/2025 17:30:19 ******/
+/****** Object:  Table [dbo].[ExamenImagen]    Script Date: 4/8/2025 18:43:07 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -373,7 +374,7 @@ CREATE TABLE [dbo].[ExamenImagen](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[ExamenLaboratorio]    Script Date: 3/8/2025 17:30:19 ******/
+/****** Object:  Table [dbo].[ExamenLaboratorio]    Script Date: 4/8/2025 18:43:07 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -388,7 +389,7 @@ CREATE TABLE [dbo].[ExamenLaboratorio](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[HistoriaClínica]    Script Date: 3/8/2025 17:30:19 ******/
+/****** Object:  Table [dbo].[HistoriaClínica]    Script Date: 4/8/2025 18:43:07 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -402,7 +403,7 @@ CREATE TABLE [dbo].[HistoriaClínica](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Historial_Movimientos]    Script Date: 3/8/2025 17:30:19 ******/
+/****** Object:  Table [dbo].[Historial_Movimientos]    Script Date: 4/8/2025 18:43:07 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -423,7 +424,7 @@ PRIMARY KEY CLUSTERED
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Hospital]    Script Date: 3/8/2025 17:30:19 ******/
+/****** Object:  Table [dbo].[Hospital]    Script Date: 4/8/2025 18:43:07 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -441,7 +442,7 @@ CREATE TABLE [dbo].[Hospital](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Insumo]    Script Date: 3/8/2025 17:30:19 ******/
+/****** Object:  Table [dbo].[Insumo]    Script Date: 4/8/2025 18:43:07 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -461,7 +462,7 @@ PRIMARY KEY CLUSTERED
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Internación]    Script Date: 3/8/2025 17:30:19 ******/
+/****** Object:  Table [dbo].[Internación]    Script Date: 4/8/2025 18:43:07 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -478,7 +479,7 @@ CREATE TABLE [dbo].[Internación](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Medicamento]    Script Date: 3/8/2025 17:30:19 ******/
+/****** Object:  Table [dbo].[Medicamento]    Script Date: 4/8/2025 18:43:07 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -499,7 +500,7 @@ PRIMARY KEY CLUSTERED
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Paciente]    Script Date: 3/8/2025 17:30:19 ******/
+/****** Object:  Table [dbo].[Paciente]    Script Date: 4/8/2025 18:43:07 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -529,13 +530,14 @@ CREATE TABLE [dbo].[Paciente](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Pedidos]    Script Date: 3/8/2025 17:30:19 ******/
+/****** Object:  Table [dbo].[Pedidos]    Script Date: 4/8/2025 18:43:07 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
 CREATE TABLE [dbo].[Pedidos](
-	[id_pedido] [int] IDENTITY(1,1) NOT NULL,
+	[id_pedido] [int] NOT NULL,
+	[id_internacion] [int] NULL,
 	[id_proveedor] [int] NOT NULL,
 	[id_medicamento] [int] NULL,
 	[id_insumo] [int] NULL,
@@ -548,7 +550,7 @@ PRIMARY KEY CLUSTERED
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Piso]    Script Date: 3/8/2025 17:30:19 ******/
+/****** Object:  Table [dbo].[Piso]    Script Date: 4/8/2025 18:43:07 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -564,7 +566,7 @@ CREATE TABLE [dbo].[Piso](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Prescribir]    Script Date: 3/8/2025 17:30:19 ******/
+/****** Object:  Table [dbo].[Prescribir]    Script Date: 4/8/2025 18:43:07 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -581,7 +583,7 @@ CREATE TABLE [dbo].[Prescribir](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Proveedor]    Script Date: 3/8/2025 17:30:19 ******/
+/****** Object:  Table [dbo].[Proveedor]    Script Date: 4/8/2025 18:43:07 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -596,7 +598,7 @@ PRIMARY KEY CLUSTERED
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Receta]    Script Date: 3/8/2025 17:30:19 ******/
+/****** Object:  Table [dbo].[Receta]    Script Date: 4/8/2025 18:43:07 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -614,7 +616,7 @@ CREATE TABLE [dbo].[Receta](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[ReservaDeAtencion]    Script Date: 3/8/2025 17:30:19 ******/
+/****** Object:  Table [dbo].[ReservaDeAtencion]    Script Date: 4/8/2025 18:43:07 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -632,7 +634,7 @@ CREATE TABLE [dbo].[ReservaDeAtencion](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[ResultadoExamenImagen]    Script Date: 3/8/2025 17:30:19 ******/
+/****** Object:  Table [dbo].[ResultadoExamenImagen]    Script Date: 4/8/2025 18:43:07 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -643,7 +645,7 @@ CREATE TABLE [dbo].[ResultadoExamenImagen](
 	[id_historiaClinica] [int] NULL
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[ResultadoExamenLaboratorio]    Script Date: 3/8/2025 17:30:19 ******/
+/****** Object:  Table [dbo].[ResultadoExamenLaboratorio]    Script Date: 4/8/2025 18:43:07 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -658,7 +660,7 @@ CREATE TABLE [dbo].[ResultadoExamenLaboratorio](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Sala]    Script Date: 3/8/2025 17:30:19 ******/
+/****** Object:  Table [dbo].[Sala]    Script Date: 4/8/2025 18:43:07 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -675,7 +677,7 @@ CREATE TABLE [dbo].[Sala](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Tipo]    Script Date: 3/8/2025 17:30:19 ******/
+/****** Object:  Table [dbo].[Tipo]    Script Date: 4/8/2025 18:43:07 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -689,7 +691,7 @@ CREATE TABLE [dbo].[Tipo](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Trabajar]    Script Date: 3/8/2025 17:30:19 ******/
+/****** Object:  Table [dbo].[Trabajar]    Script Date: 4/8/2025 18:43:07 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -704,7 +706,7 @@ CREATE TABLE [dbo].[Trabajar](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Tratamiento]    Script Date: 3/8/2025 17:30:19 ******/
+/****** Object:  Table [dbo].[Tratamiento]    Script Date: 4/8/2025 18:43:07 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -793,6 +795,11 @@ REFERENCES [dbo].[Medicamento] ([id_medicamento])
 GO
 ALTER TABLE [dbo].[Entregas] CHECK CONSTRAINT [FK_Entregas_Medicamento]
 GO
+ALTER TABLE [dbo].[Entregas]  WITH CHECK ADD  CONSTRAINT [FK_Entregas_Pedido] FOREIGN KEY([id_pedido])
+REFERENCES [dbo].[Pedidos] ([id_pedido])
+GO
+ALTER TABLE [dbo].[Entregas] CHECK CONSTRAINT [FK_Entregas_Pedido]
+GO
 ALTER TABLE [dbo].[Entregas]  WITH CHECK ADD  CONSTRAINT [FK_Entregas_Proveedor] FOREIGN KEY([id_proveedor])
 REFERENCES [dbo].[Proveedor] ([id_proveedor])
 GO
@@ -877,6 +884,11 @@ ALTER TABLE [dbo].[Paciente]  WITH CHECK ADD  CONSTRAINT [FK_Paciente_Sala] FORE
 REFERENCES [dbo].[Sala] ([id_sala])
 GO
 ALTER TABLE [dbo].[Paciente] CHECK CONSTRAINT [FK_Paciente_Sala]
+GO
+ALTER TABLE [dbo].[Pedidos]  WITH CHECK ADD  CONSTRAINT [FK_Id_Internacion] FOREIGN KEY([id_internacion])
+REFERENCES [dbo].[Internación] ([id_internacion])
+GO
+ALTER TABLE [dbo].[Pedidos] CHECK CONSTRAINT [FK_Id_Internacion]
 GO
 ALTER TABLE [dbo].[Pedidos]  WITH CHECK ADD  CONSTRAINT [FK_Pedidos_Insumo] FOREIGN KEY([id_insumo])
 REFERENCES [dbo].[Insumo] ([id_insumo])
@@ -968,11 +980,12 @@ ALTER TABLE [dbo].[Pedidos]  WITH CHECK ADD  CONSTRAINT [CHK_Pedidos_Item] CHECK
 GO
 ALTER TABLE [dbo].[Pedidos] CHECK CONSTRAINT [CHK_Pedidos_Item]
 GO
-/****** Object:  StoredProcedure [dbo].[sp_InsertarEntrega]    Script Date: 3/8/2025 17:30:19 ******/
+/****** Object:  StoredProcedure [dbo].[sp_InsertarEntrega]    Script Date: 4/8/2025 18:43:07 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
+
 -- =============================================
 -- Author:      Jorge
 -- Create date: 2025-08-03
@@ -1015,11 +1028,100 @@ BEGIN
     SELECT SCOPE_IDENTITY() AS NewIdEntrega;
 END
 GO
-/****** Object:  StoredProcedure [dbo].[sp_InsertarPedido]    Script Date: 3/8/2025 17:30:19 ******/
+/****** Object:  StoredProcedure [dbo].[sp_InsertarHistorialEntrega]    Script Date: 4/8/2025 18:43:07 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
+
+CREATE PROCEDURE [dbo].[sp_InsertarHistorialEntrega]
+    @IdInternacion   INT = NULL,
+    @IdProveedor     INT,
+    @IdMedicamento   INT = NULL,
+    @IdInsumo        INT = NULL,
+    @FechaMovimiento DATETIME,
+    @Cantidad        INT,
+    @Observacion     NVARCHAR(MAX)
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    INSERT INTO dbo.Historial
+    (
+        id_internacion,
+        tipo_movimiento,
+        id_proveedor,
+        id_medicamento,
+        id_insumo,
+        fecha_movimiento,
+        cantidad,
+        observacion
+    )
+    VALUES
+    (
+        @IdInternacion,     -- id_internacion (puede ser NULL)
+        'ENTREGA',          -- tipo_movimiento
+        @IdProveedor,
+        @IdMedicamento,
+        @IdInsumo,
+        @FechaMovimiento,
+        @Cantidad,
+        @Observacion
+    );
+END
+GO
+/****** Object:  StoredProcedure [dbo].[sp_InsertarHistorialPedido]    Script Date: 4/8/2025 18:43:07 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE PROCEDURE [dbo].[sp_InsertarHistorialPedido]
+    @IdProveedor     INT,
+    @IdMedicamento   INT = NULL,
+    @IdInsumo        INT = NULL,
+    @FechaMovimiento DATETIME,
+    @Cantidad        INT,
+    @Observacion     NVARCHAR(MAX)
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    INSERT INTO dbo.Historial
+    (
+        id_internacion,
+        tipo_movimiento,
+        id_proveedor,
+        id_medicamento,
+        id_insumo,
+        fecha_movimiento,
+        cantidad,
+        observacion
+    )
+    VALUES
+    (
+        NULL,               -- id_internacion (no aplica para pedido)
+        'PEDIDO',           -- tipo_movimiento
+        @IdProveedor,
+        @IdMedicamento,
+        @IdInsumo,
+        @FechaMovimiento,
+        @Cantidad,
+        @Observacion
+    );
+END
+GO
+/****** Object:  StoredProcedure [dbo].[sp_InsertarPedido]    Script Date: 4/8/2025 18:43:07 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+-- =============================================
+-- Author:      Johann
+-- Create date: 2025-08-03
+-- Description: Inserta un nuevo pedido en la tabla Pedidos.
+-- =============================================
 CREATE PROCEDURE [dbo].[sp_InsertarPedido]
     @IdProveedor     INT,
     @IdMedicamento   INT,
@@ -1053,7 +1155,6 @@ BEGIN
     -- Devuelve el nuevo id_pedido (asumiendo que es IDENTITY)
     SELECT SCOPE_IDENTITY() AS NewIdPedido;
 END
-
 GO
 USE [master]
 GO
