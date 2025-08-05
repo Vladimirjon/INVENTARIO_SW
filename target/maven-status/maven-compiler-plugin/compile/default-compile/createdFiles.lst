@@ -18,6 +18,7 @@ inventarioBLL\EntregaService.class
 InventarioDAL\ConexionBD.class
 com\mycompany\inventario\INVENTARIO_GUI.class
 InventarioDAL\ProveedorDAO.class
+com\mycompany\inventario\LoginController.class
 inventarioBLL\InsumoService.class
 inventarioBLL\ProveedorVistaService.class
 InventarioDAL\MedicamentoVistaDAO.class

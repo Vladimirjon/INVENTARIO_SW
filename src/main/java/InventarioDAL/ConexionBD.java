@@ -14,13 +14,13 @@ import java.sql.SQLException;
  * @author Johann
  */
 public class ConexionBD {
-    private static final String URL = "jdbc:sqlserver://ASUS-8KR2UI2;"
-                + "databaseName=polisalud;"
-                + "encrypt=true;"
-                +"trustServerCertificate=true";
+    private static final String URL = "jdbc:sqlserver://localhost\\MSSQLSERVER2;databaseName=polisalud;encrypt=true;trustServerCertificate=true";
+
+
     
-    private static final String USER = "sa";
-    private static final String PASSWORD = "admin";
+    private static final String USER = "proyectoSW";
+    private static final String PASSWORD = "password";
+
     
     public static Connection conectar() throws SQLException {
         return DriverManager.getConnection(URL,USER,PASSWORD);
@@ -29,3 +29,5 @@ public class ConexionBD {
     
     
 }
+
+

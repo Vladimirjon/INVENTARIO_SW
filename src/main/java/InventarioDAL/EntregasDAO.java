@@ -88,4 +88,38 @@ public class EntregasDAO {
     }
     return newIdEntrega;
 }
+    
+    public List<EntregasVista> filtrarEntregasPorProveedor(Integer idProveedor) {
+    List<EntregasVista> lista = new ArrayList<>();
+    String sql = "SELECT * FROM dbo.Entregas WHERE id_proveedor = ?";  // Solo filtrar por id_proveedor
+
+    try (Connection conn = ConexionBD.conectar();
+         PreparedStatement ps = conn.prepareStatement(sql)) {
+
+        // Establecer el parámetro del proveedor
+        ps.setInt(1, idProveedor);
+
+        ResultSet rs = ps.executeQuery();
+
+        while (rs.next()) {
+            EntregasVista entrega = new EntregasVista(
+                rs.getInt("id_entregas"),
+                rs.getInt("id_internacion"),
+                rs.getInt("id_proveedor"),
+                rs.getInt("id_medicamento"),
+                rs.getInt("id_insumo"),
+                rs.getDate("fecha_entregas").toLocalDate(),
+                rs.getInt("cantidad"),
+                rs.getString("observacion")
+            );
+            lista.add(entrega);
+        }
+
+    } catch (SQLException e) {
+        System.err.println("Error al consultar las entregas filtradas por proveedor: " + e.getMessage());
+    }
+
+    return lista;
+}
+
 }

@@ -129,7 +129,7 @@
                                     <TextField fx:id="txtCantidadPedido" layoutX="499.0" layoutY="11.0" prefHeight="26.0" prefWidth="192.0" />
                                     <ChoiceBox fx:id="choiceInternacionPedido" layoutX="207.0" layoutY="84.0" prefWidth="150.0" />
                                     <Label layoutX="107.0" layoutY="84.0" text="INTERNACIÓN" />
-                                    <Button layoutX="711.0" layoutY="73.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="130.0" text="FILTRAR PEDIDO" />
+                                    <Button layoutX="711.0" layoutY="73.0" mnemonicParsing="false" onAction="#handleFiltrarPedidos" prefHeight="30.0" prefWidth="130.0" text="FILTRAR PEDIDO" />
                                     <TableView fx:id="tblPedidos1" layoutX="24.0" layoutY="345.0" prefHeight="160.0" prefWidth="819.0">
                                        <columns>
                                           <TableColumn fx:id="colIdPedido1" prefWidth="65.59999465942383" text="Id_Pedido" />
@@ -217,7 +217,7 @@
                                           <TableColumn fx:id="colObservacionEnt1" prefWidth="121.5999755859375" text="Observación" />
                                        </columns>
                                     </TableView>
-                                    <Button layoutX="718.0" layoutY="80.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="126.0" text="FITRAR ENTREGA" />
+                                    <Button layoutX="718.0" layoutY="80.0" mnemonicParsing="false" onAction="#handleFiltrarEntregas" prefHeight="30.0" prefWidth="126.0" text="FITRAR ENTREGA" />
                                  </children>
                               </AnchorPane>
                            </top>

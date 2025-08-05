@@ -358,6 +358,53 @@ private void cargarPedidos() {
     tblPedidos.setItems(obsPedidos);
 }
 
+
+@FXML
+private void handleFiltrarPedidos(ActionEvent event) {
+    // Obtener los valores seleccionados en los ChoiceBox
+    ProveedorVista proveedor = choiceProveedor.getValue();
+    MedicamentoInsumoVista medIns = choiceMedicamentoInsumo.getValue();
+
+    Integer idProveedor = (proveedor != null) ? proveedor.getIdProveedor() : null;
+    Integer idMedicamento = (medIns != null && medIns.getTipo().equals("MEDICAMENTO")) ? medIns.getId() : null;
+    Integer idInsumo = (medIns != null && medIns.getTipo().equals("INSUMO")) ? medIns.getId() : null;
+
+    // Llamar al DAO para filtrar los pedidos
+    PedidoDAO pedidoDAO = new PedidoDAO();
+    List<PedidoVista> pedidosFiltrados = pedidoDAO.filtrarPedidos(idProveedor, idMedicamento, idInsumo);
+
+    // Convertir la lista filtrada a ObservableList
+    ObservableList<PedidoVista> data = FXCollections.observableArrayList(pedidosFiltrados);
+
+    // Asignar los datos filtrados a la tabla de pedidos
+    tblPedidos.setItems(data);
+}
+
+@FXML
+private void handleFiltrarEntregas(ActionEvent event) {
+    // Obtener el ID del proveedor seleccionado
+    ProveedorVista proveedor = choiceProveedorEntregas.getValue();
+    
+    if (proveedor == null) {
+        // Si no se seleccionó un proveedor, mostrar un mensaje de advertencia
+        new javafx.scene.control.Alert(javafx.scene.control.Alert.AlertType.WARNING,
+            "Debe seleccionar un proveedor.").showAndWait();
+        return;
+    }
+
+    // Obtener el ID del proveedor
+    int idProveedor = proveedor.getIdProveedor();
+
+    // Llamar al DAO para obtener las entregas filtradas por el ID del proveedor
+    EntregasDAO entregasDAO = new EntregasDAO();
+    List<EntregasVista> entregas = entregasDAO.filtrarEntregasPorProveedor(idProveedor);
+
+    // Actualizar la tabla con las entregas filtradas
+    ObservableList<EntregasVista> data = FXCollections.observableArrayList(entregas);
+    tblEntregas.setItems(data);
+}
+
+
 @FXML
 private void handleAñadirPedido(ActionEvent event) {
     System.out.println("Añadir pedido presionado");
