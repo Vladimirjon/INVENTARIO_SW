@@ -4,13 +4,22 @@
  */
 package com.mycompany.inventario;
 
-import java.math.BigDecimal;
+import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.ResourceBundle;
 
+import InventarioDAL.EntregasDAO;
+import InventarioDAL.EntregasVista;
+import InventarioDAL.HistorialMovimientoVista;
+import InventarioDAL.InsumoVista;
+import InventarioDAL.MedicamentoInsumoVista;
+import InventarioDAL.MedicamentoVista;
+import InventarioDAL.PedidoDAO;
+import InventarioDAL.PedidoVista;
+import InventarioDAL.ProveedorVista;
 import inventarioBLL.ConductorVistaService;
 import inventarioBLL.EntregaService;
 import inventarioBLL.HistorialService;
@@ -18,14 +27,13 @@ import inventarioBLL.InsumoService;
 import inventarioBLL.MedicamentoInsumoService;
 import inventarioBLL.PedidoService;
 import inventarioBLL.ProveedorVistaService;
-import inventarioBLL.*;
-import InventarioDAL.*;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Tab;
@@ -33,7 +41,6 @@ import javafx.scene.control.TabPane;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.stage.Stage;
 
 /**
  * FXML Controller class
@@ -321,14 +328,21 @@ if (isEntregas) {
 }
     
   
-}    @FXML private void handleSalir(ActionEvent event) {
-        // Opción A: cerrar solo la ventana actual
-        Stage stage = (Stage) btnSalir.getScene().getWindow();
-        stage.close();
+}    
 
-        // Opción B: terminar toda la aplicación
-        // Platform.exit();
+@FXML 
+private void handleSalir(ActionEvent event) {
+    try {
+        // Vuelve al Login cargando el FXML correspondiente
+        App.setRoot("Login");
+    } catch (IOException e) {
+        e.printStackTrace();
+        new Alert(Alert.AlertType.ERROR,
+            "No se pudo regresar al login:\n" + e.getMessage()
+        ).showAndWait();
     }
+}
+
     
 private void cargarHistorial() {
     HistorialService historialService = new HistorialService();
