@@ -2,47 +2,46 @@ package com.mycompany.inventario;
 
 import java.io.IOException;
 
+import InventarioDAL.BodegueroVista;
+import inventarioBLL.BodegueroService;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 
 public class LoginController {
 
-    @FXML private Button btnIniciarSesion;
-    @FXML private TextField txtUser;
-    @FXML private PasswordField txtPass;
+    @FXML private TextField txtUser;       // Nombre + Apellido
+    @FXML private PasswordField txtPass;   // La contraseña
 
-    /** Se ejecuta tras cargar el FXML (puedes dejarlo vacío si no necesitas inicializar nada). */
-    @FXML
-    private void initialize() {
-        // Inicialización opcional
-    }
-
-    /** Invocado al pulsar "Iniciar sesión". */
     @FXML
     private void handleIniciarSesion(ActionEvent event) {
-        String user = txtUser.getText().trim().toUpperCase();
-        String pass = txtPass.getText().trim();
+        String nombreCompleto = txtUser.getText().trim();
+        String pass           = txtPass.getText().trim();
 
-        boolean ok = 
-            ("ADMIN".equals(user)        && "admin".equals(pass))     ||
-            ("JOELTINITANA".equals(user) && "inventario".equals(pass));
-
-        if (!ok) {
-            new Alert(Alert.AlertType.ERROR, "Usuario o contraseña incorrectos").showAndWait();
+        if (nombreCompleto.isEmpty() || pass.isEmpty()) {
+            new Alert(Alert.AlertType.WARNING,
+                "Debe ingresar nombre y contraseña."
+            ).showAndWait();
             return;
         }
 
-        try {
-            // Cambia la vista a INVENTARIO_GUI.fxml
-            App.setRoot("INVENTARIO_GUI");
-        } catch (IOException e) {
-            e.printStackTrace();
+        BodegueroService svc = new BodegueroService();
+        BodegueroVista user = svc.autenticarUsuarioPorNombre(nombreCompleto, pass);
+
+        if (user != null) {
+            // carga la pantalla principal
+            try {
+                App.setRoot("INVENTARIO_GUI");
+            } catch (IOException e) {
+                new Alert(Alert.AlertType.ERROR,
+                    "No se pudo cargar la aplicación:\n" + e.getMessage()
+                ).showAndWait();
+            }
+        } else {
             new Alert(Alert.AlertType.ERROR,
-                "No se pudo cargar la pantalla:\n" + e.getMessage()
+                "Nombre o contraseña incorrectos."
             ).showAndWait();
         }
     }
