@@ -89,15 +89,15 @@ public class EntregasDAO {
     return newIdEntrega;
 }
     
-    public List<EntregasVista> filtrarEntregasPorProveedor(Integer idProveedor) {
+    public List<EntregasVista> filtrarEntregasPorId(int idEntrega) {
     List<EntregasVista> lista = new ArrayList<>();
-    String sql = "SELECT * FROM dbo.Entregas WHERE id_proveedor = ?";  // Solo filtrar por id_proveedor
+    String sql = "SELECT * FROM dbo.Entregas WHERE id_entregas = ?";  // Filtrar solo por id_entregas
 
     try (Connection conn = ConexionBD.conectar();
          PreparedStatement ps = conn.prepareStatement(sql)) {
 
-        // Establecer el parámetro del proveedor
-        ps.setInt(1, idProveedor);
+        // Establecer el parámetro del id_entregas
+        ps.setInt(1, idEntrega);
 
         ResultSet rs = ps.executeQuery();
 
@@ -116,10 +116,12 @@ public class EntregasDAO {
         }
 
     } catch (SQLException e) {
-        System.err.println("Error al consultar las entregas filtradas por proveedor: " + e.getMessage());
+        System.err.println("Error al consultar las entregas filtradas por ID de entrega: " + e.getMessage());
     }
 
     return lista;
 }
+
+
 
 }

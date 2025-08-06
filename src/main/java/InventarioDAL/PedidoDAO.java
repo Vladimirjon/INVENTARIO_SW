@@ -81,54 +81,57 @@ public int insertarPedido(int idProveedor, Integer idMedicamento, Integer idInsu
     return newIdPedido;
 }
 
-public List<PedidoVista> filtrarPedidos(Integer idProveedor, Integer idMedicamento, Integer idInsumo) {
-        List<PedidoVista> lista = new ArrayList<>();
-        
-        StringBuilder sql = new StringBuilder("SELECT * FROM dbo.Pedidos WHERE 1=1");
+public List<PedidoVista> filtrarPedidos(Integer idPedido, Integer idMedicamento, Integer idInsumo) {
+    List<PedidoVista> lista = new ArrayList<>();
+    
+    StringBuilder sql = new StringBuilder("SELECT * FROM dbo.Pedidos WHERE 1=1");
 
-        if (idProveedor != null) {
-            sql.append(" AND id_proveedor = ?");
+    // Filtros opcionales
+    if (idPedido != null) {
+        sql.append(" AND id_pedido = ?");
+    }
+    if (idMedicamento != null) {
+        sql.append(" AND id_medicamento = ?");
+    }
+    if (idInsumo != null) {
+        sql.append(" AND id_insumo = ?");
+    }
+
+    try (Connection conn = ConexionBD.conectar();
+         PreparedStatement ps = conn.prepareStatement(sql.toString())) {
+
+        int paramIndex = 1;
+
+        // Set parameters
+        if (idPedido != null) {
+            ps.setInt(paramIndex++, idPedido);
         }
         if (idMedicamento != null) {
-            sql.append(" AND id_medicamento = ?");
+            ps.setInt(paramIndex++, idMedicamento);
         }
         if (idInsumo != null) {
-            sql.append(" AND id_insumo = ?");
+            ps.setInt(paramIndex++, idInsumo);
         }
 
-        try (Connection conn = ConexionBD.conectar();
-             PreparedStatement ps = conn.prepareStatement(sql.toString())) {
-
-            int paramIndex = 1;
-
-            if (idProveedor != null) {
-                ps.setInt(paramIndex++, idProveedor);
-            }
-            if (idMedicamento != null) {
-                ps.setInt(paramIndex++, idMedicamento);
-            }
-            if (idInsumo != null) {
-                ps.setInt(paramIndex++, idInsumo);
-            }
-
-            ResultSet rs = ps.executeQuery();
-            while (rs.next()) {
-                PedidoVista pedido = new PedidoVista(
-                    rs.getInt("id_pedido"),
-                    rs.getInt("id_proveedor"),
-                    rs.getInt("id_medicamento"),
-                    rs.getInt("id_insumo"),
-                    rs.getInt("cantidad"),
-                    rs.getDate("fecha_pedido").toLocalDate(),
-                    rs.getString("observacion")
-                );
-                lista.add(pedido);
-            }
-
-        } catch (SQLException e) {
-            System.err.println("Error al filtrar los pedidos: " + e.getMessage());
+        ResultSet rs = ps.executeQuery();
+        while (rs.next()) {
+            PedidoVista pedido = new PedidoVista(
+                rs.getInt("id_pedido"),
+                rs.getInt("id_proveedor"),
+                rs.getInt("id_medicamento"),
+                rs.getInt("id_insumo"),
+                rs.getInt("cantidad"),
+                rs.getDate("fecha_pedido").toLocalDate(),
+                rs.getString("observacion")
+            );
+            lista.add(pedido);
         }
 
-        return lista;
+    } catch (SQLException e) {
+        System.err.println("Error al filtrar los pedidos: " + e.getMessage());
     }
+
+    return lista;
+}
+
 }

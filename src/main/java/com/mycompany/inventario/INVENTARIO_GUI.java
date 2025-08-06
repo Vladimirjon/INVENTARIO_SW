@@ -27,6 +27,7 @@ import inventarioBLL.InsumoService;
 import inventarioBLL.MedicamentoInsumoService;
 import inventarioBLL.PedidoService;
 import inventarioBLL.ProveedorVistaService;
+import java.util.ArrayList;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -55,6 +56,8 @@ public class INVENTARIO_GUI implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 
+        cargarIdsDePedidos();  
+        cargarIdsDeEntregas();
         
         // Medicamento
         colcodIdMedicamento.setCellValueFactory(new PropertyValueFactory<>("Id_Medicamento"));
@@ -118,6 +121,8 @@ colObservacionHist .setCellValueFactory(new PropertyValueFactory<>("observacion"
 
         // Llamada inicial para que la visibilidad se ajuste al tab por defecto
         onTabChanged(null, null, tabPane.getSelectionModel().getSelectedItem());
+      
+        
     }    
     
     @FXML private Button btnSalir;
@@ -174,10 +179,12 @@ colObservacionHist .setCellValueFactory(new PropertyValueFactory<>("observacion"
 @FXML private TableColumn<PedidoVista, Integer>    colCantidadPedido;
 @FXML private TableColumn<PedidoVista, LocalDate>  colFechaPedido;
 @FXML private TableColumn<PedidoVista, String>     colObservacion;
+@FXML private ChoiceBox<Integer> choiceIdPedido;
 
 // Tabla Entregas
 @FXML private javafx.scene.control.TextField txtObservacionEntrega;
 @FXML private javafx.scene.control.TextField txtCantidadEntrega;
+@FXML private ChoiceBox<Integer> choiceIdEntrega;
 
 // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 //@FXML private ChoiceBox<InternacionVista> choiceInternacion; // Cambia el tipo según tabla de Internacion
@@ -359,19 +366,59 @@ private void cargarPedidos() {
 }
 
 
+private void cargarIdsDePedidos() {
+    // Llamar al servicio para obtener todos los pedidos
+    PedidoService pedidoService = new PedidoService();
+    List<PedidoVista> pedidos = pedidoService.obtenerTodosLosPedidos();
+
+    // Crear una lista de IDs de pedidos
+    List<Integer> idsPedidos = new ArrayList<>();
+    for (PedidoVista pedido : pedidos) {
+        idsPedidos.add(pedido.getIdPedido());  // Suponiendo que el método `getIdPedido()` retorna el ID de Pedido
+    }
+
+    // Convertir la lista de IDs a ObservableList
+    ObservableList<Integer> obsIdsPedidos = FXCollections.observableArrayList(idsPedidos);
+    
+    // Asignar la lista observable al ChoiceBox de ID de Pedido
+    choiceIdPedido.setItems(obsIdsPedidos);
+}
+
+private void cargarIdsDeEntregas() {
+    // Llamar al servicio para obtener todos los ID de entregas
+    EntregasDAO entregasDAO = new EntregasDAO();
+    List<EntregasVista> entregas = entregasDAO.obtenerTodasLasEntregas();  // Obtener todas las entregas
+
+    // Crear una lista de IDs de entregas
+    List<Integer> idsEntregas = new ArrayList<>();
+    for (EntregasVista entrega : entregas) {
+        idsEntregas.add(entrega.getIdEntregas());  // Suponiendo que el método getIdEntregas() retorna el ID de entrega
+    }
+
+    // Convertir la lista de IDs a ObservableList
+    ObservableList<Integer> obsIdsEntregas = FXCollections.observableArrayList(idsEntregas);
+    
+    // Asignar la lista observable al ChoiceBox de ID de entrega
+    choiceIdEntrega.setItems(obsIdsEntregas);
+}
+
+
 @FXML
 private void handleFiltrarPedidos(ActionEvent event) {
-    // Obtener los valores seleccionados en los ChoiceBox
+    // Obtener el valor seleccionado en el ChoiceBox de ID de Pedido
+    Integer idPedido = choiceIdPedido.getValue();  // Obtener el valor seleccionado en el ChoiceBox
+
+    // Obtener los valores seleccionados en los demás ChoiceBoxes
     ProveedorVista proveedor = choiceProveedor.getValue();
     MedicamentoInsumoVista medIns = choiceMedicamentoInsumo.getValue();
 
-    Integer idProveedor = (proveedor != null) ? proveedor.getIdProveedor() : null;
+    // Filtrar los valores según el tipo (Medicamento o Insumo)
     Integer idMedicamento = (medIns != null && medIns.getTipo().equals("MEDICAMENTO")) ? medIns.getId() : null;
     Integer idInsumo = (medIns != null && medIns.getTipo().equals("INSUMO")) ? medIns.getId() : null;
 
-    // Llamar al DAO para filtrar los pedidos
+    // Llamar al DAO para filtrar los pedidos usando el ID del pedido y los otros filtros
     PedidoDAO pedidoDAO = new PedidoDAO();
-    List<PedidoVista> pedidosFiltrados = pedidoDAO.filtrarPedidos(idProveedor, idMedicamento, idInsumo);
+    List<PedidoVista> pedidosFiltrados = pedidoDAO.filtrarPedidos(idPedido, idMedicamento, idInsumo);
 
     // Convertir la lista filtrada a ObservableList
     ObservableList<PedidoVista> data = FXCollections.observableArrayList(pedidosFiltrados);
@@ -380,29 +427,30 @@ private void handleFiltrarPedidos(ActionEvent event) {
     tblPedidos.setItems(data);
 }
 
+
+
 @FXML
 private void handleFiltrarEntregas(ActionEvent event) {
-    // Obtener el ID del proveedor seleccionado
-    ProveedorVista proveedor = choiceProveedorEntregas.getValue();
-    
-    if (proveedor == null) {
-        // Si no se seleccionó un proveedor, mostrar un mensaje de advertencia
+    // Obtener el ID de entrega seleccionado en el ChoiceBox
+    Integer idEntrega = choiceIdEntrega.getValue();  // Obtener el valor seleccionado en el ChoiceBox
+
+    if (idEntrega == null) {
+        // Si no se seleccionó un ID de entrega, mostrar un mensaje de advertencia
         new javafx.scene.control.Alert(javafx.scene.control.Alert.AlertType.WARNING,
-            "Debe seleccionar un proveedor.").showAndWait();
+            "Debe seleccionar un ID de entrega.").showAndWait();
         return;
     }
 
-    // Obtener el ID del proveedor
-    int idProveedor = proveedor.getIdProveedor();
-
-    // Llamar al DAO para obtener las entregas filtradas por el ID del proveedor
+    // Llamar al DAO para obtener las entregas filtradas por el ID de entrega
     EntregasDAO entregasDAO = new EntregasDAO();
-    List<EntregasVista> entregas = entregasDAO.filtrarEntregasPorProveedor(idProveedor);
+    List<EntregasVista> entregas = entregasDAO.filtrarEntregasPorId(idEntrega);
 
     // Actualizar la tabla con las entregas filtradas
     ObservableList<EntregasVista> data = FXCollections.observableArrayList(entregas);
     tblEntregas.setItems(data);
 }
+
+
 
 
 @FXML

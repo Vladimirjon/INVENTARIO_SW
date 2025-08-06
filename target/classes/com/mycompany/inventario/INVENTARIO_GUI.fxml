@@ -110,7 +110,7 @@
                                     <ChoiceBox fx:id="choiceMedicamentoInsumo" layoutX="207.0" layoutY="50.0" prefWidth="150.0" />
                                     <Label layoutX="116.0" layoutY="8.0" prefHeight="32.0" prefWidth="70.0" text="PROVEEDOR" />
                                     <Label layoutX="47.0" layoutY="52.0" prefHeight="22.0" prefWidth="137.0" text="MEDICAMENTO/INSUMO" />
-                                    <Label layoutX="397.0" layoutY="51.0" prefHeight="23.0" prefWidth="82.0" text="OBSERVACIÓN" />
+                                    <Label layoutX="393.0" layoutY="44.0" prefHeight="23.0" prefWidth="82.0" text="OBSERVACIÓN" />
                                     <TableView fx:id="tblPedidos" layoutX="24.0" layoutY="151.0" prefHeight="160.0" prefWidth="819.0">
                                       <columns>
                                           <TableColumn fx:id="colIdPedido" prefWidth="65.59999465942383" text="Id_Pedido" />
@@ -124,8 +124,8 @@
                                       </columns>
                                     </TableView>
                                     <Button fx:id="btnAñadirPedido" layoutX="711.0" layoutY="9.0" mnemonicParsing="false" onAction="#handleAñadirPedido" prefHeight="30.0" prefWidth="131.0" text="AÑADIR" />
-                                    <TextField fx:id="txtObservacionPedido" layoutX="501.0" layoutY="56.0" prefHeight="65.0" prefWidth="190.0" />
-                                    <Label layoutX="422.0" layoutY="16.0" text="CANTIDAD" />
+                                    <TextField fx:id="txtObservacionPedido" layoutX="500.0" layoutY="43.0" prefHeight="23.0" prefWidth="190.0" />
+                                    <Label layoutX="399.0" layoutY="12.0" prefHeight="23.0" prefWidth="59.0" text="CANTIDAD" />
                                     <TextField fx:id="txtCantidadPedido" layoutX="499.0" layoutY="11.0" prefHeight="26.0" prefWidth="192.0" />
                                     <ChoiceBox fx:id="choiceInternacionPedido" layoutX="207.0" layoutY="84.0" prefWidth="150.0" />
                                     <Label layoutX="107.0" layoutY="84.0" text="INTERNACIÓN" />
@@ -153,6 +153,8 @@
                                           <Font name="System Bold" size="12.0" />
                                        </font>
                                     </Label>
+                                    <ChoiceBox fx:id="choiceIdPedido" layoutX="499.0" layoutY="76.0" prefHeight="25.0" prefWidth="191.0" />
+                                    <Label layoutX="399.0" layoutY="80.0" text="ID_PEDIDO" />
                                  </children>
                               </AnchorPane>
                            </center>
@@ -190,7 +192,7 @@
                                        </columns>
                                     </TableView>
                                     <Button fx:id="btnAñadirEntrega" layoutX="717.0" layoutY="11.0" mnemonicParsing="false" onAction="#handleAñadirEntrega" prefHeight="30.0" prefWidth="131.0" text="AÑADIR" />
-                                    <TextField fx:id="txtObservacionEntrega" layoutX="497.0" layoutY="43.0" prefHeight="64.0" prefWidth="186.0" />
+                                    <TextField fx:id="txtObservacionEntrega" layoutX="497.0" layoutY="43.0" prefHeight="23.0" prefWidth="186.0" />
                                     <TextField fx:id="txtCantidadEntrega" layoutX="497.0" layoutY="13.0" prefHeight="26.0" prefWidth="186.0" />
                                     <Label layoutX="414.0" layoutY="16.0" prefHeight="18.0" prefWidth="59.0" text="CANTIDAD" />
                                     <Label layoutX="370.0" layoutY="122.0" text="ENTREGAS REALIZADAS" textAlignment="CENTER">
@@ -218,6 +220,8 @@
                                        </columns>
                                     </TableView>
                                     <Button layoutX="718.0" layoutY="80.0" mnemonicParsing="false" onAction="#handleFiltrarEntregas" prefHeight="30.0" prefWidth="126.0" text="FITRAR ENTREGA" />
+                                    <ChoiceBox fx:id="choiceIdEntrega" layoutX="497.0" layoutY="71.0" prefHeight="25.0" prefWidth="185.0" />
+                                    <Label layoutX="400.0" layoutY="74.0" text="ID_ENTREGA" />
                                  </children>
                               </AnchorPane>
                            </top>
